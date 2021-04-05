@@ -60,7 +60,7 @@ ROOT_URLCONF = 'book_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['{}/book_store/templates'.format(BASE_DIR)],
+        'DIRS': [BASE_DIR / 'book_store/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,6 +74,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'book_store/templates/static',
 ]
 
 AUTHENTICATION_BACKENDS = [
