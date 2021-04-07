@@ -2,31 +2,30 @@
 <html lang="en">
 <head>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
         <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
     </head>
 </head>
 <body>
+    <div class="topnav" id="myTopnav">
+        <a class="active" href="#home">محصولات</a>
+        <a href="#news">ورود کاربر</a>
+        <a href="#contact">درباره ما</a>
+        <a href="#about">تماس با ما</a>
+        <a class="icon" href="javascript:void(0);" onclick="responsive_nav()" style="font-size:15px;">
+            <div class="icon_container" onclick="menu_icon(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </a>
+    </div>
 
-<div class="topnav" id="myTopnav">
-    <a href="#home" class="active">محصولات</a>
-    <a href="#news">ورود کاربر</a>
-    <a href="#contact">درباره ما</a>
-    <a href="#about">تماس با ما</a>
-    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsive_nav()">
-        <div class="icon_container" onclick="menu_icon(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-    </a>
-</div>
+    {% block content %}
 
-{% block content %}
-
-{% endblock %}
+    {% endblock %}
 
 </body>
 </html>

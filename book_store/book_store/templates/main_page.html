@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'first_page_style.css' %}" rel="stylesheet" type="text/css">
         <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
     </head>
     <body>
@@ -21,7 +21,7 @@
                     <ul class='nav_list'>
 
                         <div class='nav_list_item'>
-                            <li><a href="#">محصولات</a></li>
+                            <li><a href="{% url 'books_list' %}">محصولات</a></li>
                         </div>
                         <div class='nav_list_item'>
                             <li><a href="#">ورود کاربر</a></li>
@@ -37,5 +37,13 @@
             </div>
         </div>
     </div>
+    <footer>
+        <h2>انتشارات اقیانوس دانش</h2>
+        <h3> آدرس: تهران خیابان نیروی دریایی منازل مسکونی خلیج فارس </h3>
+        <h4> تلفن تماس </h4>
+        <h4> ۰۹۱۲۹۴۹۵۴۸۰ </h4>
+        <h4> ۰۹۰۲۶۷۷۷۹۶۱ </h4>
+        <h4> ۰۹۰۳۶۸۱۵۰۶۸ </h4>
+    </footer>
     </body>
 </html>
