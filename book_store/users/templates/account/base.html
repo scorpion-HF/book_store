@@ -1,15 +1,31 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
   <head>
-    <title>{% block head_title %}{% endblock %}</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
+    <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
   </head>
   <body>
+    <div class="topnav" id="myTopnav">
+        <a class="active" href="#home">محصولات</a>
+        <a href="#news">ورود کاربر</a>
+        <a href="#contact">درباره ما</a>
+        <a href="#about">تماس با ما</a>
+        <a class="icon" href="javascript:void(0);" onclick="responsive_nav()" style="font-size:15px;">
+            <div class="icon_container" onclick="menu_icon(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </a>
+    </div>
     {% block body %}
 
     {% if messages %}
-    <div>
+    <div class="messages">
       <strong>Messages:</strong>
       <ul>
         {% for message in messages %}

@@ -26,6 +26,8 @@
   font-weight: 300;
 }
 
+/* basic styles */
+
 :root {
   --background-color: #124;
   --item-color: #141;
@@ -44,9 +46,17 @@ body {
   background-color: var(--background-color);
 }
 
-/* nav */
+a, input, button, p {font-size: 1vw;}
+h3 {font-size: 1.5vw;}
+h2 {font-size: 2vw;}
+
+/* navigation bar */
 
 .topnav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
   overflow: hidden;
   background-color: var(--nav-background-color);
 }
@@ -99,10 +109,26 @@ body {
   transform: rotate(45deg) translate(-3px, -3px);
 }
 
+/* footer */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--text-color);
+  padding: 10px 0px 10px 0px;
+  margin-top: 10px;
+  background-color: var(--nav-background-color);
+}
+
+/* search bar */
+
 .search
 {
     padding: 5px;
-	width: 100%;
+    width: 100%;
     height: 3vw;
     text-align: center;
     background-color: var(--background-color);
@@ -133,6 +159,27 @@ body {
     border-radius: 40px;
 }
 
+/* items list */
+
+.catalog {
+  padding-top: 10px;
+  padding-bottom: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.item {
+  text-align: center;
+  direction: rtl;
+}
+
+.item-image {
+  padding: 10px;
+  width: 80%;
+  border-radius: 40px;
+}
+
 .item h3, h2 {
   color: var(--text-color);
   padding: 1vw;
@@ -148,17 +195,26 @@ body {
   padding: 1vw;
 }
 
+/* item detail */
+
 .detail-container {
   display: grid;
   grid-template-areas: 'image description' 'title button';
   padding: 10vw 20vw ;
+  direction: rtl;
   text-align: center;
 }
 
-.detail-container img {
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   grid-area: image;
-  width: 20vw;
+}
+
+.image-container img {
   border-radius: 40px;
+  width: 20vw;
 }
 
 .detail-container p {
@@ -175,25 +231,70 @@ body {
   direction: rtl;
 }
 
-.detail-container button {
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   grid-area: button;
+
+}
+
+.button-container button {
   width: 10vw;;
   background: none;
   background-color: var(--item-color);
   color: #fff;
   border-radius: 40px;
-  margin-left: 10vw;
   direction: rtl;
+}
+
+/* login and forms */
+
+.form-container {
+  text-align: center;
+  padding-top: 20vh;
+}
+
+.form-container h1 {
+  font-size: 2vw;
+  color: var(--text-color);
+}
+
+.form-container p {
+  text-align: center;
+  direction: rtl;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.form-container form label {
+  color: var(--text-color);
+}
+
+.form-container button {
+  background: none;
+  background-color: var(--item-color);
+  color: #fff;
+  border-radius: 40px;
+  direction: rtl;
+  padding: 1vw;
+}
+
+.form-container .errorlist {
+  color: red;
+}
+
+.form-container p a, a {
+  text-decoration: none;
+  color: green;
 }
 
 /* media queries */
 
 @media screen and (max-width: 600px) {
-  a, input, button, p {
-    font-size: 3vw;
-  }
+  a, input, button, p {font-size: 3vw;}
   h3 {font-size: 5vw;}
-  h2 {font-size: 7vw;}
+  h2 {font-size: 6vw;}
   .topnav a:not(:first-child){
     display: none;
   }
@@ -214,26 +315,13 @@ body {
       text-align: left;
       color: var(--text-color);
     }
-  .topnav.responsive .dropdown {float: none;}
-  .topnav.responsive .dropdown-content {position: relative;}
-  .topnav.responsive .dropdown .dropbtn
-    {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
   .search
     {
-	  width: 95%;
-	  margin: 0 auto;
 	  height: 6vw;
     }
   .search input[type="text"]
     {
-	  border: 0px;
 	  width: 70%;
-	  height: 100%;
-	  padding: 10px;
     }
   .search input[type="text"]:focus
     {
@@ -241,87 +329,61 @@ body {
     }
   .search input[type="submit"]
     {
-	  background: none;
-	  background-color: var(--item-color);
-	  color: #fff;
 	  width: 15%;
-	  height: 100%;
-      cursor:pointer;
     }
   .catalog {
-    padding-top: 10px;
-    display: grid;
     grid-template-columns: 100%;
-    grid-gap: 10px;
-    background-color: var(--background-color);
-  }
-  .item {
-    text-align: center;
-    direction: rtl;
   }
   .item-image {
-    padding: 10px;
     width: 50%;
-    border-radius: 40px;
+  }
+  .detail-container {
+    grid-template-areas: 'image' 'title' 'description' 'button';
+    padding: 5vw 10vw ;
+  }
+  .image-container img {
+    width: 50vw;
+  }
+  .button-container button {
+    width: 40vw;
   }
 }
 
 @media screen and (min-device-width : 601px) and (max-device-width : 1024px) {
-  a, input, button, p {
-    font-size: 2vw;
-  }
+  a, input, button, p {font-size: 2vw;}
   h3 {font-size: 3vw;}
-  h2 {font-size: 4vw;}
-  .search input[type="text"]
-{
-	border: 0px;
-	width: 60%;
-	height: 100%;
-}
+  h2 {font-size: 3.5vw;}
 
-.search input[type="text"]:focus
-{
+  .search
+    {
+	  height: 4vw;
+    }
+
+  .search input[type="text"] {
+    width: 60%;
+  }
+
+  .search input[type="text"]:focus {
 	outline: 0;
-}
+  }
 
-.search input[type="submit"]
-{
-	background: none;
-	background-color: var(--item-color);
-	color: #fff;
+  .search input[type="submit"] {
 	width: 10%;
-	height: 100%;
-    cursor:pointer;
-}
-  .catalog {
-    padding-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
   }
-  .item {
-    text-align: center;
-  }
-  .item-image {
-    padding: 10px;
-    width: 80%;
-    border-radius: 40px;
-  }
-}
 
-@media screen and (min-width: 1025px) {
   .catalog {
-    padding-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
-  }
-  .item {
-    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .item-image {
-    padding: 10px;
-    width: 80%;
-    border-radius: 40px;
+    width: 70%;
+  }
+  .detail-container {
+    padding: 5vw 10vw ;
+  }
+  .image-container img {
+    width: 30vw;
+  }
+  .button-container button {
+    width: 20vw;
   }
 }
