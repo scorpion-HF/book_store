@@ -7,6 +7,15 @@
         <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
     </head>
     <body>
+    {% if messages %}
+            <div class="messages">
+                <ul>
+                  {% for message in messages %}
+                    <li>{{message}}</li>
+                  {% endfor %}
+                </ul>
+            </div>
+    {% endif %}
     <div class="main-container">
         <div>
             <a href="#menu">

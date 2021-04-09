@@ -26,7 +26,6 @@
 
     {% if messages %}
     <div class="messages">
-      <strong>Messages:</strong>
       <ul>
         {% for message in messages %}
         <li>{{message}}</li>
@@ -34,10 +33,16 @@
       </ul>
     </div>
     {% endif %}
-    {% block content %}
-    {% endblock %}
+    <div class="form-container">
+      {% block content %}
+      {% endblock %}
+    </div>
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
   </body>
+  <footer>
+        <h3>انتشارات اقیانوس دانش</h3>
+        <p> تلفن تماس <br> ۰۹۱۲۹۴۹۵۴۸۰ <br> ۰۹۰۲۶۷۷۷۹۶۱ <br> ۰۹۰۳۶۸۱۵۰۶۸ </p>
+  </footer>
 </html>

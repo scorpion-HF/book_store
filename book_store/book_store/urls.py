@@ -21,5 +21,6 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='first_page.html')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('user/', include('users.urls')),
     path('catalog/', include('catalog.urls')),
 ]

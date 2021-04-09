@@ -44,6 +44,16 @@ body {
     background: var(--background-color);
 }
 
+.messages {
+  text-align: center;
+}
+
+.messages * {
+  color: green;
+  direction: ltr;
+  list-style-type: none;
+}
+
 .main-container {
     min-height: 70vh;
     display: flex;

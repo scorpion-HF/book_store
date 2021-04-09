@@ -3,7 +3,7 @@
 {% load i18n static %}
 
 {% block content %}
-  <div class="form-container">
+
     <h1>ورود کاربر</h1>
     <form class="login" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
@@ -15,7 +15,6 @@
       <a class="button secondaryAction" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
       <p>در صورتی که حساب کاربری ندارید از طریق لینک زیر اقدام فرمایید<br><a href="{{ signup_url }}">ساخت حساب کاربری</a></p>
     </form>
-  </div>
 
 
 {% endblock %}
