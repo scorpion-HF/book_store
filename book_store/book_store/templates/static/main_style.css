@@ -193,13 +193,14 @@ footer {
   direction: rtl;
 }
 
-.item button {
+.item a {
   background: none;
   background-color: var(--item-color);
   color: #fff;
   border-radius: 40px;
   direction: rtl;
   padding: 1vw;
+  box-shadow: 0px 0px 0px 2px silver;
 }
 
 /* item detail */
@@ -245,13 +246,14 @@ footer {
   grid-area: button;
 }
 
-.button-container button {
+.button-container a {
   width: 10vw;;
   background: none;
   background-color: var(--item-color);
   color: #fff;
   border-radius: 40px;
   direction: rtl;
+  box-shadow: 0px 0px 0px 2px silver;
 }
 
 /* login and forms */

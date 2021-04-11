@@ -1,15 +1,18 @@
 from django.db import models
-
-
-class Author(models.Model):
-    first_name = models.CharField(max_length=50, blank=False, null=False)
-    last_name = models.CharField(max_length=50, blank=False, null=False)
-    email = models.EmailField(null=True, blank=True)
+from PIL import Image
 
 
 class Book(models.Model):
+    image = models.ImageField(upload_to='books_images/', null=True, blank=True)
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(null=True, blank=True)
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     price = models.IntegerField(blank=False)
     data_of_publish = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.image:
+            img = Image.open(self.image.path)
+            output_size = (600, 600)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

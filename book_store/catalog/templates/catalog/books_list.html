@@ -13,83 +13,17 @@
 
 </div>
 <div class="catalog">
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال</h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال </h3>
-        <button> مشاهده </button>
-    </div>
-    <div class="item">
-        <img src="{% static 'catalog/book_default.png' %}" class="item-image">
-        <h2> نام کتاب‌ </h2>
-        <h3> ۱۰۰۰ ریال </h3>
-        <button> مشاهده </button>
-    </div>
+    {% for book in books %}
+        <div class="item">
+            {% if book.image %}
+                <img src="{{ book.image.url }}" class="item-image">
+            {% else %}
+                <img src="{% static 'catalog/book_default.png' %}" class="item-image">
+            {% endif %}
+            <h2> {{ book.title }}‌ </h2>
+            <h3> {{ book.price }} ریال </h3>
+            <a href="{% url 'catalog:book_detail' book.id %}"> مشاهده </a>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}
