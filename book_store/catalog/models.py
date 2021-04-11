@@ -1,5 +1,7 @@
 from django.db import models
 from PIL import Image
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 
 
 class Book(models.Model):
@@ -8,6 +10,7 @@ class Book(models.Model):
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField(blank=False)
     data_of_publish = models.DateTimeField()
+    comments = GenericRelation(Comment)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

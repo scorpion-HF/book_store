@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+{% load comment_tags %}
+
 {% load static %}
+
 
 {% block title %} جزئیات کتاب {% endblock %}
 
@@ -17,8 +20,11 @@
     <p>{{ book.description }}</p>
     <div class="button-container">
         <a href="#"> {{ book.price }} ریال <br> خرید </a>
+        <a href="{% url 'catalog:book_comments' book.pk %}"> نظرات </a>
     </div>
+
 </div>
+
 
 <script>
 function responsive_nav() {

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'catalog',
+    'comment',
 ]
 
 MIDDLEWARE = [
@@ -160,4 +161,8 @@ MEDIA_URL = '/media/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/user/profile/'
+LOGIN_URL = '/accounts/login/'
+
+PROFILE_APP_NAME = 'users'
+PROFILE_MODEL_NAME = 'User'
 
