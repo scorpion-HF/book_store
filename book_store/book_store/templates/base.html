@@ -10,8 +10,8 @@
     </head>
     <body>
         <div class="topnav" id="Topnav">
-            <a class="active" href="#home">محصولات</a>
-            <a href="#news">ورود کاربر</a>
+            <a class="{% if request.resolver_match.url_name == 'books_list' %} active {% endif %}" href="{% url 'catalog:books_list' %}">محصولات</a>
+            <a class="{% if request.resolver_match.url_name == 'account_login' %} active {% endif %}" href="{% url 'account_login' %}">ورود کاربر</a>
             <a href="#contact">درباره ما</a>
             <a href="#about">تماس با ما</a>
             <a class="icon" href="javascript:void(0);" onclick="responsive_nav()" style="font-size:15px;">
@@ -37,7 +37,15 @@
         {% endblock %}
         <script>
             function responsive_nav() {
-              var x = document.getElementById("Topnav");
+              var x = document.getElementById("active");
+              if (x.className === "topnav") {
+                x.className += " responsive";
+              } else {
+                x.className = "topnav";
+              }
+            }
+            function active_nav_item() {
+              var x = document.getElementById("active");
               if (x.className === "topnav") {
                 x.className += " responsive";
               } else {

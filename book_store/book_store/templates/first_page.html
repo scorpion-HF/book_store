@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{% static 'first_page_style.css' %}" rel="stylesheet" type="text/css">
-        <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
+        <title>انتشارات اقیانوس دانش</title>
     </head>
     <body>
     {% if messages %}
@@ -30,10 +30,10 @@
                     <ul class='nav_list'>
 
                         <div class='nav_list_item'>
-                            <li><a href="{% url 'books_list' %}">محصولات</a></li>
+                            <li><a href="{% url 'catalog:books_list' %}">محصولات</a></li>
                         </div>
                         <div class='nav_list_item'>
-                            <li><a href="#">ورود کاربر</a></li>
+                            <li><a href="{% url 'account_login' %}">ورود کاربر</a></li>
                         </div>
                         <div class='nav_list_item'>
                             <li><a href="#">درباره ما</a></li>
