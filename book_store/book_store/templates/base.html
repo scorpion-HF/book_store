@@ -1,65 +1,50 @@
 {% load static %}
 <html lang="en">
-    <head>
-        <head>
-            <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-            <meta content="width=device-width, initial-scale=1" name="viewport">
-            <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
-            <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
-        </head>
-    </head>
-    <body>
-        <div class="topnav" id="Topnav">
-            <a class="{% if request.resolver_match.url_name == 'books_list' %} active {% endif %}" href="{% url 'catalog:books_list' %}">محصولات</a>
-            <a class="{% if request.resolver_match.url_name == 'account_login' %} active {% endif %}" href="{% url 'account_login' %}">ورود کاربر</a>
-            <a href="#contact">درباره ما</a>
-            <a href="#about">تماس با ما</a>
-            <a class="icon" href="javascript:void(0);" onclick="responsive_nav()" style="font-size:15px;">
-                <div class="icon_container" onclick="menu_icon(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-            </a>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
+    <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+    <a class="{% if request.resolver_match.url_name == 'books_list' %} active {% endif %}"
+       href="{% url 'catalog:books_list' %}">محصولات</a>
+    <a class="{% if request.resolver_match.url_name == 'account_login' %} active {% endif %}"
+       href="{% url 'account_login' %}">ورود کاربر</a>
+    <a href="#contact">درباره ما</a>
+    <a href="#about">تماس با ما</a>
+    <a class="icon" href="javascript:void(0);" onclick="responsive_nav()" style="font-size:15px;">
+        <div class="icon_container" onclick="menu_icon(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
         </div>
-        {% if messages %}
-            <div class="messages">
-                <ul>
-                  {% for message in messages %}
-                    <li>{{message}}</li>
-                  {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+    </a>
+</div>
+{% block body %}
 
-        {% block content %}
-
-        {% endblock %}
-        <script>
-            function responsive_nav() {
-              var x = document.getElementById("active");
-              if (x.className === "topnav") {
-                x.className += " responsive";
-              } else {
-                x.className = "topnav";
-              }
-            }
-            function active_nav_item() {
-              var x = document.getElementById("active");
-              if (x.className === "topnav") {
-                x.className += " responsive";
-              } else {
-                x.className = "topnav";
-              }
-            }
-
-            function menu_icon(x) {
-              x.classList.toggle("change");
-            }
-        </script>
-    </body>
-    <footer>
-        <h3>انتشارات اقیانوس دانش</h3>
-        <p> تلفن تماس <br> ۰۹۱۲۹۴۹۵۴۸۰ <br> ۰۹۰۲۶۷۷۷۹۶۱ <br> ۰۹۰۳۶۸۱۵۰۶۸ </p>
-    </footer>
+{% if messages %}
+<div class="messages">
+    <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<div class="main-container">
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}
+{% block extra_body %}
+{% endblock %}
+</body>
+<footer>
+    <h3>انتشارات اقیانوس دانش</h3>
+    <p> تلفن تماس <br> ۰۹۱۲۹۴۹۵۴۸۰ <br> ۰۹۰۲۶۷۷۷۹۶۱ <br> ۰۹۰۳۶۸۱۵۰۶۸ </p>
+</footer>
 </html>

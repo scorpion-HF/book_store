@@ -46,9 +46,9 @@ body {
   background-color: var(--background-color);
 }
 
-a, input, button, p {font-size: 1vw;}
-h3 {font-size: 1.5vw;}
-h2 {font-size: 2vw;}
+a, input, button, p {font-size: 0.8vw;}
+h3 {font-size: 1vw;}
+h2 {font-size: 1.5vw;}
 
 /* navigation bar */
 
@@ -107,6 +107,13 @@ h2 {font-size: 2vw;}
 .change .bar3 {
   -webkit-transform: rotate(45deg) translate(-3px, -3px);
   transform: rotate(45deg) translate(-3px, -3px);
+}
+
+/* main container */
+
+.main-container {
+  text-align: center;
+  padding-top: 60px;
 }
 
 /* footer */
@@ -260,28 +267,23 @@ footer {
   list-style-type: none;
 }
 
-.form-container {
-  text-align: center;
-  padding-top: 20vh;
-}
-
-.form-container h1 {
+.main-container h1 {
   font-size: 2vw;
   color: var(--text-color);
 }
 
-.form-container p {
+.main-container p {
   text-align: center;
   direction: rtl;
   padding: 20px;
   color: var(--text-color);
 }
 
-.form-container form label {
+.main-container form label {
   color: var(--text-color);
 }
 
-.form-container button {
+.main-container button {
   background: none;
   background-color: var(--item-color);
   color: #fff;
@@ -290,11 +292,11 @@ footer {
   padding: 1vw;
 }
 
-.form-container .errorlist {
+.main-container .errorlist {
   color: red;
 }
 
-.form-container p a, a {
+.main-container p a, a {
   text-decoration: none;
   color: green;
 }
@@ -303,8 +305,8 @@ footer {
 
 @media screen and (max-width: 600px) {
   a, input, button, p {font-size: 3vw;}
-  h3 {font-size: 5vw;}
-  h2 {font-size: 6vw;}
+  h3 {font-size: 4vw;}
+  h2 {font-size: 5vw;}
   .topnav a:not(:first-child){
     display: none;
   }
@@ -360,9 +362,9 @@ footer {
 }
 
 @media screen and (min-device-width : 601px) and (max-device-width : 1024px) {
-  a, input, button, p {font-size: 2vw;}
-  h3 {font-size: 3vw;}
-  h2 {font-size: 3.5vw;}
+  a, input, button, p {font-size: 1.5vw;}
+  h3 {font-size: 2vw;}
+  h2 {font-size: 2.5vw;}
 
   .search
     {
