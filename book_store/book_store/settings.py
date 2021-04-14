@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'catalog',
     'comment',
+    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -163,6 +163,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/user/profile/'
 LOGIN_URL = '/accounts/login/'
 
+COMMENTS_APP = 'comment'
 PROFILE_APP_NAME = 'users'
 PROFILE_MODEL_NAME = 'User'
+COMMENT_FLAGS_ALLOWED = False
+EMAIL_HOST_USER = 'saeedalbooyeh@gmail.com'
 
