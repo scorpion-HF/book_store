@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_comments_xtd',
+    'django_comments',
     'users',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'comment',
     'catalog',
+    'commenting',
 ]
 
 MIDDLEWARE = [
@@ -107,12 +109,8 @@ WSGI_APPLICATION = 'book_store.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'book_store_db',
-        'USER': 'book_store_admin',
-        'PASSWORD': 'admin123456',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -163,9 +161,28 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/user/profile/'
 LOGIN_URL = '/accounts/login/'
 
-COMMENTS_APP = 'comment'
-PROFILE_APP_NAME = 'users'
-PROFILE_MODEL_NAME = 'User'
-COMMENT_FLAGS_ALLOWED = False
-EMAIL_HOST_USER = 'saeedalbooyeh@gmail.com'
+COMMENTS_APP = "django_comments_xtd"
+
+#  To help obfuscating comments before they are sent for confirmation.
+COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
+                     b"Aequam memento rebus in arduis servare mentem.")
+
+COMMENTS_XTD_CONFIRM_EMAIL = True
+COMMENTS_XTD_MAX_THREAD_LEVEL = 2
+
+COMMENTS_XTD_APP_MODEL_OPTIONS = {
+    'default': {
+        'allow_flagging': False,
+        'allow_feedback': False,
+        'show_feedback': False,
+        'who_can_post': 'users'
+    }
+}
+
+MANAGERS = (
+    ('Saeed Albooyeh', 'saeedalbooyeh@gmail.com'),
+)
+
+
+
 

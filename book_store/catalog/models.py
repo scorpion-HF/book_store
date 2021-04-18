@@ -1,7 +1,5 @@
 from django.db import models
 from PIL import Image
-from django.contrib.contenttypes.fields import GenericRelation
-from comment.models import Comment
 from django.urls import reverse
 
 
@@ -10,9 +8,8 @@ class Book(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField(blank=False)
-    data_of_publish = models.DateTimeField()
-    comments = GenericRelation(Comment)
-
+    date_of_publish = models.DateTimeField()
+    allow_comments = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -24,3 +21,6 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('catalog:book_detail', kwargs={'pk': self.id})
+
+
+

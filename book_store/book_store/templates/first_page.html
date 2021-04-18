@@ -33,7 +33,11 @@
                             <li><a href="{% url 'catalog:books_list' %}">محصولات</a></li>
                         </div>
                         <div class='nav_list_item'>
-                            <li><a href="{% url 'account_login' %}">ورود کاربر</a></li>
+                            {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'users:profile' %}">پروفایل</a></li>
+                            {% else %}
+                                <li><a href="{% url 'account_login' %}">ورود کاربر</a></li>
+                            {% endif %}
                         </div>
                         <div class='nav_list_item'>
                             <li><a href="#">درباره ما</a></li>

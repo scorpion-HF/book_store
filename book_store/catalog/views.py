@@ -7,15 +7,10 @@ class BooksListView(ListView):
     paginate_by = 10
     template_name = 'catalog/books_list.html'
     context_object_name = 'books'
+    ordering = ['-date_of_publish']
 
 
 class BookDetailView(DetailView):
     model = Book
     template_name = 'catalog/book_detail.html'
-    context_object_name = 'book'
-
-
-class CommentsView(DetailView):
-    model = Book
-    template_name = 'catalog/comments.html'
     context_object_name = 'book'

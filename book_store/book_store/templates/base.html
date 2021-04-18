@@ -4,6 +4,8 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="{% static 'django_comments_xtd/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'django_comments_xtd/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
     <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
     {% block extra_head %}
@@ -13,10 +15,29 @@
 <div class="topnav" id="myTopnav">
     <a class="{% if request.resolver_match.url_name == 'books_list' %} active {% endif %}"
        href="{% url 'catalog:books_list' %}">محصولات</a>
-    <a class="{% if request.resolver_match.url_name == 'account_login' %} active {% endif %}"
-       href="{% url 'account_login' %}">ورود کاربر</a>
     <a href="#contact">درباره ما</a>
     <a href="#about">تماس با ما</a>
+    {% if request.user.is_authenticated %}
+        <div class="dropdown">
+            <button class="dropbtn">
+                {% if request.user.is_superuser %}
+                    مدیر سایت
+                {% elif request.user.last_name %}
+                    {{ request.user.get_full_name }}
+                {% else %}
+                    بدون نام
+                {% endif %}
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="{% url 'users:profile' %}">پروفایل</a>
+              <a href="{% url 'account_logout' %}">خروج</a>
+            </div>
+        </div>
+    {% else %}
+        <a class="{% if request.resolver_match.url_name == 'account_login' %} active {% endif %}"
+           href="{% url 'account_login' %}">ورود کاربر</a>
+    {% endif %}
     <a class="icon" href="javascript:void(0);" onclick="responsive_nav()" style="font-size:15px;">
         <div class="icon_container" onclick="menu_icon(this)">
             <div class="bar1"></div>
@@ -43,9 +64,19 @@
 {% endblock %}
 {% block extra_body %}
 {% endblock %}
+<script>
+function responsive_nav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+function menu_icon(x) {
+  x.classList.toggle("change");
+}
+</script>
 </body>
-<footer>
-    <h3>انتشارات اقیانوس دانش</h3>
-    <p> تلفن تماس <br> ۰۹۱۲۹۴۹۵۴۸۰ <br> ۰۹۰۲۶۷۷۷۹۶۱ <br> ۰۹۰۳۶۸۱۵۰۶۸ </p>
-</footer>
 </html>

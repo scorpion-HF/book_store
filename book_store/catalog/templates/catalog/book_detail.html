@@ -18,24 +18,8 @@
     <p>{{ book.description }}</p>
     <div class="button-container">
         <a href="#"> {{ book.price }} ریال <br> خرید </a>
-        <a href="{% url 'catalog:book_comments' book.pk %}"> نظرات </a>
+        <a href="{% url 'commenting:comments' book.pk %}"> نظرات </a>
     </div>
 
 </div>
-
-
-<script>
-function responsive_nav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
-function menu_icon(x) {
-  x.classList.toggle("change");
-}
-</script>
 {% endblock %}
