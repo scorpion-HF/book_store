@@ -28,222 +28,41 @@
 
 /* basic styles */
 
-:root {
-  --background-color: #124;
-  --item-color: #141;
-  --text-color: #fff;
-  --nav-background-color: #00a;
-}
-
 * {
-  margin: 0;
-  padding: 0;
   font-family: "Vazir", Arial, sans-serif;
-  font-size: 1vw;
 }
 
-body {
-  background-color: var(--background-color);
+h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
+    direction: rtl;
 }
 
-a, input, button, p {font-size: 0.8vw;}
-h3 {font-size: 1vw;}
-h2 {font-size: 1.5vw;}
-
-/* navigation bar */
-
-.topnav {
-  width: 100%;
-  overflow: hidden;
-  background-color: var(--nav-background-color);
+.thumb-wrapper {
 }
 
-.topnav a {
-  float: right;
-  display: block;
-  color: var(--text-color);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+.img-box {
 }
 
-.active {
-  background-color: var(--item-color);
-  color: white;
+.thumb-content {
+	padding: 15px;
 }
 
-.topnav .icon {
-  display: none;
+.item-price {
+	font-size: 13px;
+	padding: 2px 0;
 }
 
-.dropdown {
-  float: right;
-  overflow: hidden;
+.item-price strike {
+	color: #999;
+	margin-right: 5px;
 }
 
-/* Style the dropdown button to fit inside the topnav */
-.dropdown .dropbtn {
-  border: none;
-  outline: none;
-  padding: 14px 16px;
-  background-color: inherit;
-  color: var(--text-color);
-}
-
-/* Style the dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--nav-background-color);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Style the links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  color: var(--text-color);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: var(--item-color);
-}
-
-.dropdown-content a:hover {
-  background-color: var(--item-color);
-  color: var(--text-color);
-}
-
-/* Show the dropdown menu when the user moves the mouse over the dropdown button */
-.dropdown:hover .dropdown-content {
-  display: block;
+.item-price span {
+	color: #86bd57;
+	font-size: 110%;
 }
 
 
-.icon_container {
-  display: inline-block;
-  cursor: pointer;
-}
 
-.bar1, .bar2, .bar3 {
-  width: 30px;
-  height: 3px;
-  background-color: #fff;
-  margin: 2px 0;
-  transition: 0.4s;
-}
-
-.change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-4px, 4px);
-  transform: rotate(-45deg) translate(-4px, 4px);
-}
-
-.change .bar2 {opacity: 0;}
-
-.change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-3px, -3px);
-  transform: rotate(45deg) translate(-3px, -3px);
-}
-
-/* main container */
-
-.main-container {
-  text-align: center;
-  padding-top: 60px;
-}
-
-/* footer */
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: var(--text-color);
-  padding: 10px 0px 10px 0px;
-  margin-top: 10px;
-  background-color: var(--nav-background-color);
-}
-
-/* search bar */
-
-.search
-{
-    padding: 5px;
-    width: 100%;
-    height: 3vw;
-    text-align: center;
-    background-color: var(--background-color);
-}
-
-.search input[type="text"]
-{
-	border: 0px;
-	width: 40%;
-	height: 100%;
-	padding: 10px;
-	border-radius: 40px;
-}
-
-.search input[type="text"]:focus
-{
-	outline: 0;
-}
-
-.search input[type="submit"]
-{
-	background: none;
-	background-color: var(--item-color);
-	color: #fff;
-	width: 5%;
-	height: 100%;
-    cursor:pointer;
-    border-radius: 40px;
-}
-
-/* items list */
-
-.catalog {
-  direction: rtl;
-  padding-top: 10px;
-  padding-bottom: 200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
-}
-
-.item {
-  text-align: center;
-  direction: rtl;
-}
-
-.item-image {
-  padding: 10px;
-  width: 80%;
-  border-radius: 40px;
-}
-
-.item h3, h2 {
-  color: var(--text-color);
-  padding: 1vw;
-  direction: rtl;
-}
-
-.item a {
-  background: none;
-  background-color: var(--item-color);
-  color: #fff;
-  border-radius: 40px;
-  direction: rtl;
-  padding: 1vw;
-  box-shadow: 0px 0px 0px 2px silver;
-}
 
 /* item detail */
 

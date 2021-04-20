@@ -1,9 +1,7 @@
-from django.urls import path, include
-from .views import CommentsView
+from django.urls import path
+from .views import sent
 
 app_name = 'commenting'
 urlpatterns = [
-    path('book_<int:pk>/', CommentsView.as_view(), name='comments'),
-
-
+    path('sent/', sent, name='comments-xtd-sent'),
 ]

@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'commenting',
     'django_comments_xtd',
     'django_comments',
     'users',
@@ -46,7 +45,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'catalog',
-    'commenting',
 ]
 
 MIDDLEWARE = [
@@ -162,13 +160,12 @@ LOGIN_REDIRECT_URL = '/user/profile/'
 LOGIN_URL = '/accounts/login/'
 
 COMMENTS_APP = "django_comments_xtd"
-
 #  To help obfuscating comments before they are sent for confirmation.
 COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
                      b"Aequam memento rebus in arduis servare mentem.")
 
 COMMENTS_XTD_CONFIRM_EMAIL = True
-COMMENTS_XTD_MAX_THREAD_LEVEL = 2
+COMMENTS_XTD_MAX_THREAD_LEVEL = 1
 
 COMMENTS_XTD_APP_MODEL_OPTIONS = {
     'default': {
@@ -178,11 +175,6 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
         'who_can_post': 'users'
     }
 }
-
-MANAGERS = (
-    ('Saeed Albooyeh', 'saeedalbooyeh@gmail.com'),
-)
-
 
 
 
