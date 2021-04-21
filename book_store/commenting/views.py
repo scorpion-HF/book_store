@@ -2,8 +2,11 @@ from django.apps import apps
 from django.core import signing
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.views.generic import DetailView
 from django_comments_xtd.models import XtdComment
 from django_comments_xtd.views import get_moderated_tmpl
+
+from catalog.models import Book
 
 
 def sent(request, using=None):
@@ -42,3 +45,9 @@ def sent(request, using=None):
             else:
                 moderated_tmpl = get_moderated_tmpl(comment)
                 return render(request, moderated_tmpl, {'comment': comment})
+
+
+class CommentsListView(DetailView):
+    model = Book
+    template_name = 'commenting/comments_list.html'
+    context_object_name = 'book'

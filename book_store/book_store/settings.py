@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'catalog',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -176,5 +177,6 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
     }
 }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 

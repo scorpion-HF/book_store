@@ -3,8 +3,11 @@
 
 {% block title %} لیست کتاب ها {% endblock %}
 {% block content %}
-    <h1>{{ request.user.get_full_name }}</h1>
-    <p> شماره تماس:{{ request.user.phone_number}}</p>
-    <p> آدرس:{{ request.user.address}}</p>
-    <a href="{% url 'account_email' %}">مدیریت ایمیل</a>
+<div class="container p-5 text-center rtl-div">
+        <h4>{{ request.user.get_full_name }}</h4>
+        <p>آدرس: {{ request.user.address }}</p>
+        <p>شماره تماس: {{ request.user.phone_number }}</p>
+        <p> آدرس ایمیل: {{ request.user.email }} </p>
+        <a href="{% url 'account_email' %}" role="button" class="btn btn-info btn-md mr-1 mb-2">مدیریت ایمیل</a>
+</div>
 {% endblock %}

@@ -1,62 +1,73 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %}آدرس های ایمیل{% endblock %}
 
 {% block content %}
+<div class="container text-center p-5">
     <h1>آدرس های ایمیل</h1>
-{% if user.emailaddress_set.all %}
-<p> ایمیل های زیر مربوط به حساب کاربری شما است</p>
+    {% if user.emailaddress_set.all %}
+    <p> ایمیل های زیر مربوط به حساب کاربری شما است</p>
 
-<form action="{% url 'account_email' %}" class="email_list" method="post">
-{% csrf_token %}
-<fieldset class="blockLabels">
+    <form action="{% url 'account_email' %}" class="email_list" method="post">
+        {% csrf_token %}
+        <fieldset class="blockLabels">
 
-  {% for emailaddress in user.emailaddress_set.all %}
-<div class="ctrlHolder">
-      <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%}">
+            {% for emailaddress in user.emailaddress_set.all %}
+            <div class="ctrlHolder">
+                <label for="email_radio_{{forloop.counter}}"
+                       class="{% if emailaddress.primary %}primary_email{%endif%}">
 
-      <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+                    <input class="form-check-input" id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if
+                           emailaddress.primary or user.emailaddress_set.count== 1 %}checked="checked" {%endif %}
+                           value="{{emailaddress.email}}"/>
 
-{{ emailaddress.email }}
-    {% if emailaddress.verified %}
-    <span class="verified">تایید شده</span>
+                    {{ emailaddress.email }}
+                    {% if emailaddress.verified %}
+                    <span class="verified">تایید شده</span>
+                    {% else %}
+                    <span class="unverified">عدم تایید</span>
+                    {% endif %}
+                    {% if emailaddress.primary %}<span class="primary">و اصلی</span>{% endif %}
+                </label>
+            </div>
+            {% endfor %}
+
+            <div class="buttonHolder">
+                <button class="btn btn-primary secondaryAction m-1" type="submit" name="action_primary">انتخاب به عنوان
+                    آدرس اصلی
+                </button>
+                <button class="btn btn-secondary secondaryAction m-1" type="submit" name="action_send">ارسال دوباره
+                    ایمیل تایید
+                </button>
+                <button class="btn btn-danger primaryAction m-1" type="submit" name="action_remove">حذف</button>
+            </div>
+
+        </fieldset>
+    </form>
+
     {% else %}
-    <span class="unverified">عدم تایید</span>
+    <p><strong>هشدار</strong> شما هنوز هیچ آدرس ایمیلی وارد نکرده اید لطفا جهت اقداماتی از قبیل بازیابی پسورد و... نسبت
+        به اضافه کردن آدرس ایمیل اقدام فرمایید</p>
+
     {% endif %}
-      {% if emailaddress.primary %}<span class="primary">اصلی</span>{% endif %}
-</label>
-</div>
-  {% endfor %}
 
-<div class="buttonHolder">
-      <button class="secondaryAction" type="submit" name="action_primary" >انتخاب به عنوان آدرس اصلی</button>
-      <button class="secondaryAction" type="submit" name="action_send" >ارسال دوباره ایمیل تایید</button>
-      <button class="primaryAction" type="submit" name="action_remove" >حذف</button>
-</div>
-
-</fieldset>
-</form>
-
-{% else %}
-<p><strong>هشدار</strong> شما هنوز هیچ آدرس ایمیلی وارد نکرده اید لطفا جهت اقداماتی از قبیل بازیابی پسورد و... نسبت به اضافه کردن آدرس ایمیل اقدام فرمایید</p>
-
-{% endif %}
-
-  {% if can_add_email %}
+    {% if can_add_email %}
     <h2>اضافه کردن ایمیل</h2>
 
     <form method="post" action="{% url 'account_email' %}" class="add_email">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button name="action_add" type="submit">اضافه کردن</button>
+        {{ form|crispy }}
+        <button class="btn btn-success" name="action_add" type="submit">اضافه کردن</button>
     </form>
-  {% endif %}
-<p>
-    <a class="button secondaryAction" href="{% url 'users:profile' %}">بازگشت به پروفایل</a>
-</p>
+    {% endif %}
+    <p>
+        <a class="btn btn-primary button secondaryAction" href="{% url 'users:profile' %}">بازگشت به پروفایل</a>
+    </p>
+</div>
 {% endblock %}
 
 
-{% block extra_body %}
+{% block extra_script %}
 <script type="text/javascript">
 (function() {
   var message = "آیا واقعا می خواهید این آدرس ایمیل را حذف کنید؟";
@@ -69,5 +80,6 @@
     });
   }
 })();
+
 </script>
 {% endblock %}

@@ -42,55 +42,8 @@
             </div>
             <hr>
             <a href="#" role="button" class="btn btn-primary btn-md mr-1 mb-2">خرید</a>
-            <button type="button" class="btn btn-light btn-md mr-1 mb-2" onclick="show_comments()"><i
-          class="fas fa-shopping-cart pr-2"></i>نظرات</button>
-        </div>
+            <a href="{% url 'commenting:comments_list' book.id %}" role="button" class="btn btn-secondary btn-md mr-1 mb-2">نظرات</a>
     </div>
 </div>
-<div class="container-fluid" id="comments" style="display: none;">
-    <div class="pb-3">
-  <h1 class="page-header text-center">{{ book.title }}</h1>
-  <p class="small text-center">نظرات</p>
-</div>
-<div>
-  {{ book.body|linebreaks }}
-</div>
 
-{% get_comment_count for book as comment_count %}
-<div class="py-4 text-center">
-  <a href="{% url 'catalog:books_list' %}">بازگشت به لیست کتاب ها</a>
-  &nbsp;&sdot;&nbsp;
-  {{ comment_count }} comment{{ comment_count|pluralize }}
-  ha{{ comment_count|pluralize:"s,ve"}} been posted.
-</div>
-
-{% if book.allow_comments %}
-<div class="comment">
-  <h4 class="text-center">نظر شما</h4>
-  <div class="well text-center">
-    {% render_comment_form for object %}
-  </div>
-</div>
-{% endif %}
-
-{% if comment_count %}
-<ul class="media-list">
-  {% render_xtdcomment_tree for object %}
-</ul>
-{% endif %}
-</div>
-
-{% endblock %}
-{% block extra_script %}
-<script>
-function show_comments() {
-  console.log('hi');
-  var x = document.getElementById("comments");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
 {% endblock %}

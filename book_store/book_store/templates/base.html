@@ -53,8 +53,8 @@
                             {% endif %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">پروفایل</a>
-                            <a class="dropdown-item" href="#">خروج</a>
+                            <a class="dropdown-item" href="{% url 'users:profile' %}">پروفایل</a>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">خروج</a>
                         </div>
                     </li>
                 {% endif %}

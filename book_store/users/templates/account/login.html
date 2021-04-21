@@ -1,21 +1,24 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 {% block title %}ورود کاربر{% endblock %}
 
 {% load i18n static %}
 
 {% block content %}
-
+<div class="container text-center p-5">
     <h1>ورود کاربر</h1>
     <form class="login" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form|crispy }}
       {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <button class="primaryAction" type="submit">ورود</button>
-      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
-      <p>در صورتی که حساب کاربری ندارید از طریق لینک زیر اقدام فرمایید<br><a href="{{ signup_url }}">ساخت حساب کاربری</a></p>
+      <button class="btn btn-success primaryAction" type="submit">ورود</button>
+      <a class="btn btn-warning button secondaryAction" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
+      <p>در صورتی که حساب کاربری ندارید نسبت به ساخت حساب کاربری جدید اقدام فرمایید<br><a class="btn btn-primary" href="{{ signup_url }}">ساخت حساب کاربری</a></p>
     </form>
+</div>
 
 
 {% endblock %}

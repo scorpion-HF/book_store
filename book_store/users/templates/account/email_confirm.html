@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}تایید ایمیل{% endblock %}
-
 {% load account %}
 
 {% block content %}
+<div class="container text-center p-5">
 <h1>تایید آدرس ایمیل</h1>
 
 {% if confirmation %}
@@ -14,7 +14,7 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
-    <button type="submit">تایید</button>
+    <button class="btn btn-success" type="submit">تایید</button>
 </form>
 
 {% else %}
@@ -24,5 +24,6 @@
 <p>لینک تایید ایمیل منقضی شده است<a href="{{ email_url }}">درخواست لینک تایید ایمیل جدید</a></p>
 
 {% endif %}
+</div>
 
 {% endblock %}
