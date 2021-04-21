@@ -53,14 +53,14 @@
                             {% endif %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'users:profile' %}">پروفایل</a>
-                            <a class="dropdown-item" href="{% url 'account_logout' %}">خروج</a>
+                            <a class="dropdown-item text-right" href="{% url 'users:profile' %}">پروفایل</a>
+                            <a class="dropdown-item text-right" href="{% url 'account_logout' %}">خروج</a>
                         </div>
                     </li>
                 {% endif %}
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_login' %}">ورود کاربر</a>
+                    <a class="nav-link text-right" href="{% url 'account_login' %}">ورود کاربر</a>
                 </li>
             {% endif %}
             {% block extra_nav_item %}
