@@ -1,61 +1,11 @@
+{% extends "base.html" %}
 {% load static %}
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'first_page_style.css' %}" rel="stylesheet" type="text/css">
-        <title>انتشارات اقیانوس دانش</title>
-    </head>
-    <body>
-    {% if messages %}
-            <div class="messages">
-                <ul>
-                  {% for message in messages %}
-                    <li>{{message}}</li>
-                  {% endfor %}
-                </ul>
-            </div>
-    {% endif %}
-    <div class="main-container">
-        <div>
-            <a href="#menu">
-                <img src="{% static 'logo.jpg' %}" class="logo">
-            </a>
-        </div>
+{% block title %} انتشارات اقیانوس دانش {% endblock %}
 
-        <div class="popover" id="menu">
-            <div class='content'>
-                <a href="/" class="close"></a>
-                <div class='nav'>
-                    <ul class='nav_list'>
-
-                        <div class='nav_list_item'>
-                            <li><a href="{% url 'catalog:books_list' %}">محصولات</a></li>
-                        </div>
-                        <div class='nav_list_item'>
-                            {% if request.user.is_authenticated %}
-                                <li><a href="{% url 'users:profile' %}">پروفایل</a></li>
-                            {% else %}
-                                <li><a href="{% url 'account_login' %}">ورود کاربر</a></li>
-                            {% endif %}
-                        </div>
-                        <div class='nav_list_item'>
-                            <li><a href="#">درباره ما</a></li>
-                        </div>
-                        <div class='nav_list_item'>
-                            <li><a href="#">تماس با ما</a></li>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
+{% block content %}
+<div class="container-fluid bg-primary h-100 text-center">
+    <div class="container col-xs-12 col-sm-10 col-md-6 p-5">
+        <img class="w-100 rounded-circle" src="{% static 'logo.jpg' %}" alt="logo">
     </div>
-    <footer>
-        <h2>انتشارات اقیانوس دانش</h2>
-        <h4> تلفن تماس </h4>
-        <h4> ۰۹۱۲۹۴۹۵۴۸۰ </h4>
-        <h4> ۰۹۰۲۶۷۷۷۹۶۱ </h4>
-        <h4> ۰۹۰۳۶۸۱۵۰۶۸ </h4>
-    </footer>
-    </body>
-</html>
+</div>
+{% endblock %}
