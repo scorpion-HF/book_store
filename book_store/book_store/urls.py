@@ -27,7 +27,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('user/', include('users.urls')),
     path('catalog/', include('catalog.urls')),
-    path('comments/', include('commenting.urls')),
+    path('comments_list/', include('commenting.urls')),
     path('comments/', include('django_comments_xtd.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

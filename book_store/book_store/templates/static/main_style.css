@@ -32,6 +32,8 @@
   font-family: "Vazir", Arial, sans-serif;
 }
 
+input, textarea, select { font-family:inherit; }
+
 h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
     direction: rtl;
 }

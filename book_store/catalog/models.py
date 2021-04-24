@@ -8,7 +8,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField(blank=False)
-    date_of_publish = models.DateTimeField()
+    date_of_publish = models.DateField()
     allow_comments = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
@@ -21,6 +21,9 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('catalog:book_detail', kwargs={'pk': self.id})
+
+    def __str__(self):
+        return self.title
 
 
 

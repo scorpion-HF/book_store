@@ -2,8 +2,13 @@
 {% load static %}
 {% load comments %}
 {% load comments_xtd %}
+{% load jalali_tags %}
 
 {% block title %} جزئیات کتاب {% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 
@@ -35,7 +40,7 @@
                     </tr>
                     <tr>
                         <th class="pl-0 w-25" scope="row"><strong>سال چاپ</strong></th>
-                        <td>{{book.date_of_publish}}</td>
+                        <td>{{book.date_of_publish|to_jalali:'%y/%m/%d'}}</td>
                     </tr>
                     </tbody>
                 </table>
