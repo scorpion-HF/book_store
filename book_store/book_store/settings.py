@@ -147,7 +147,7 @@ USE_L10N = True
 USE_TZ = True
 
 JALALI_DATE_DEFAULTS = {
-   'Strftime': {
+    'Strftime': {
         'date': '%y/%m/%d',
         'datetime': '%H:%M:%S _ %y/%m/%d',
     },
@@ -174,11 +174,18 @@ JALALI_DATE_DEFAULTS = {
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/saeed/project/static'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'albooyeh.saeed@gmail.com'
+EMAIL_HOST_PASSWORD = 'yoctzsyuxvshxtpb'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'book store'
 
 LOGIN_REDIRECT_URL = '/user/profile/'
 LOGIN_URL = '/accounts/login/'
