@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load jalali_tags %}
+{% load IR %}
+
 {% block title %} لیست کتاب ها {% endblock %}
 {% block extra_nav_item %}
 <li class="nav-item">
@@ -10,12 +13,20 @@
 </li>
 {% endblock %}
 {% block content %}
-<div class="container-fluid rtl-div">
-    <div class="row">
+
+<div class="container rtl-div">
+    <div class="row" id="ads">
         {% for book in books %}
-        <div class="col-xm-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 text-center">
-            <div class="thumb-wrapper">
-                <div class="img-box">
+        <div class="mb-5 col-xm-12 col-sm-6 col-md-4 text-center rtl-div">
+            <div class="card rounded h-100">
+                <div class="card-image">
+                    <span class="card-notify-badge">نسخه چاپی</span>
+                    <span class="card-notify-year">
+                        {% with date_of_publish=book.date_of_publish|to_jalali:'%y' %}
+                        چاپ
+                        {{ date_of_publish|persian_int }}
+                        {% endwith %}
+                    </span>
                     {% if book.image %}
                     <img src="{{ book.image.url }}" class="img-responsive img-fluid"
                          alt="book image">
@@ -24,10 +35,14 @@
                          alt="book image">
                     {% endif %}
                 </div>
-                <div class="thumb-content">
-                    <h4>{{ book.title }}</h4>
-                    <p class="item-price"><strike></strike> <span>{{ book.price }} ریال</span></p>
-                    <a href="{% url 'catalog:book_detail' book.id %}" class="btn btn-primary">مشاهده</a>
+                <div class="card-image-overlay mb-auto">
+                    <span class="card-detail-badge">{{ book.price|price }}ریال</span>
+                </div>
+                <div class="card-body text-center">
+                    <div class="ad-title mb-auto">
+                        <h6>{{ book.title }}</h6>
+                    </div>
+                    <a class="ad-btn-info mb-auto" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
                 </div>
             </div>
         </div>
@@ -35,5 +50,6 @@
     </div>
 </div>
 {% endblock %}
+
 
 

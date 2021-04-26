@@ -38,86 +38,127 @@ h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
     direction: rtl;
 }
 
-.thumb-wrapper {
+#ads {
+    margin: 30px 0 30px 0;
 }
 
-.img-box {
+.card-notify-badge {
+        position: absolute;
+        left: -10px;
+        top: -20px;
+        background: #87CEEB;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+
+    }
+
+.card-notify-year {
+        position: absolute;
+        right: -10px;
+        top: -20px;
+        background: #ff4444;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        width: 50px;
+        height: 50px;
+        padding: 15px 0 0 0;
 }
 
-.thumb-content {
-	padding: 15px;
-}
 
-.item-price {
-	font-size: 13px;
-	padding: 2px 0;
-}
-
-.item-price strike {
-	color: #999;
-	margin-right: 5px;
-}
-
-.item-price span {
-	color: #86bd57;
-	font-size: 110%;
-}
+.card-detail-badge {
+        background: #87CEEB;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
 
 
 
+.card:hover {
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
 
-/* item detail */
+.card-image-overlay {
+        font-size: 20px;
 
-.detail-container {
-  display: grid;
-  grid-template-areas: 'image description' 'title button';
-  padding: 10vw 20vw ;
-  direction: rtl;
-  text-align: center;
-}
+    }
 
-.image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-area: image;
-}
 
-.image-container img {
-  border-radius: 40px;
-  width: 20vw;
-}
+.card-image-overlay span {
+            display: inline-block;
+        }
 
-.detail-container p {
-  grid-area: description;
-  color: var(--text-color);
-  padding: 10px;
-  direction: rtl;
-}
 
-.detail-container h2 {
-  grid-area: title;
-  color: var(--text-color);
-  padding-top: 10px;
-  direction: rtl;
-}
+.ad-btn-info {
+        text-transform: uppercase;
+        width: 150px;
+        height: 40px;
+        border-radius: 80px;
+        font-size: 16px;
+        line-height: 35px;
+        text-align: center;
+        border: 3px solid #87CEEB;
+        display: block;
+        text-decoration: none;
+        margin: 20px auto 1px auto;
+        color: #000;
+        overflow: hidden;
+        position: relative;
+        background-color: #87CEEB;
+    }
 
-.button-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-area: button;
-}
+.ad-btn-info:hover {
+            text-decoration: none;
+            background-color: #87CEEB;
+            color: #1e1717;
+            border: 2px solid #87CEEB;
+            background: transparent;
+            transition: all 0.3s ease;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+        }
 
-.button-container a {
-  width: 10vw;;
-  background: none;
-  background-color: var(--item-color);
-  color: #fff;
-  border-radius: 40px;
-  direction: rtl;
-  box-shadow: 0px 0px 0px 2px silver;
-}
+.ad-btn-success {
+        text-transform: uppercase;
+        width: 150px;
+        height: 40px;
+        border-radius: 80px;
+        font-size: 16px;
+        line-height: 35px;
+        text-align: center;
+        border: 3px solid #7CFC00;
+        display: block;
+        text-decoration: none;
+        margin: 20px auto 1px auto;
+        color: #000;
+        overflow: hidden;
+        position: relative;
+        background-color: #7CFC00;
+    }
+
+.ad-btn-success:hover {
+            text-decoration: none;
+            background-color: #7CFC00;
+            color: #1e1717;
+            border: 2px solid #7CFC00;
+            background: transparent;
+            transition: all 0.3s ease;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+        }
+
+.ad-title h5 {
+        text-transform: uppercase;
+        font-size: 18px;
+    }
 
 /* login and forms */
 

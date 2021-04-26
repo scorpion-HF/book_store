@@ -3,52 +3,62 @@
 {% load comments %}
 {% load comments_xtd %}
 {% load jalali_tags %}
+{% load IR %}
 
 {% block title %} جزئیات کتاب {% endblock %}
 {% block extra_head %}
-    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
-    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-
-<div class="container text-center mt-5 rtl-div">
+<div class="container rtl-div">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 text-center rtl-div">
+        <div class="col-xs-12 col-md-4 text-right m-5">
             {% if book.image %}
-            <img src="{{ book.image.url }}" class="img-responsive img-fluid"
+            <img src="{{ book.image.url }}" class="img-responsive img-fluid img-thumbnail"
                  alt="book image">
             {% else %}
-            <img src="{% static 'catalog/book_default.png' %}" class="img-responsive img-fluid"
+            <img src="{% static 'catalog/book_default.png' %}" class="img-responsive img-fluid img-thumbnail"
                  alt="book image">
             {% endif %}
         </div>
-        <div class="col-xs-12 col-sm-6 text-center rtl-div">
+        <div class="col-xs-12 rtl-div m-5 text-center">
             <h5 class="m-5">{{ book.title }}</h5>
-            <p><span class="m-5"><strong>{{ book.price }} &nbsp; ریال</strong></span></p>
+            <p>{{book.description}}</p>
         </div>
     </div>
-    <div class="row"></div>
-        <div class="col-xs-12 rtl-div">
-            <p class="pt-1">{{book.description}}</p>
-            <div class="table-responsive">
-                <table class="table table-sm table-borderless mb-0 text-right">
-                    <tbody>
-                    <tr>
-                        <th class="pl-0 w-25" scope="row"><strong>نویسنده:</strong></th>
-                        <td>نام نویسنده</td>
-                    </tr>
-                    <tr>
-                        <th class="pl-0 w-25" scope="row"><strong>سال چاپ</strong></th>
-                        <td>{{book.date_of_publish|to_jalali:'%y/%m/%d'}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <hr>
-            <a href="#" role="button" class="btn btn-primary btn-md mr-1 mb-2">خرید</a>
-            <a href="{% url 'commenting:comments_list' book.id %}" role="button" class="btn btn-secondary btn-md mr-1 mb-2">نظرات</a>
+    <div class="row text-center m-5">
+        <div class="table-responsive">
+            <table class="table table-sm table-borderless mb-0 text-right">
+                <tbody>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>قیمت:</strong></th>
+                    <td>{{ book.price|price }}ریال</td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>نویسنده:</strong></th>
+                    <td>نام نویسنده</td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>سال چاپ</strong></th>
+                    <td>
+                        {% with date_of_publish=book.date_of_publish|to_jalali:'%y/%m/%d' %}
+                        {{ date_of_publish|persian_date }}
+                        {% endwith %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <div class=" row text-right m-5">
+        <a href="#" role="button" class="ad-btn-success m-auto">خرید</a>
+        <a href="{% url 'commenting:comments_list' book.id %}" role="button"
+           class="ad-btn-info m-auto">نظرات</a>
     </div>
 </div>
+
 
 {% endblock %}
