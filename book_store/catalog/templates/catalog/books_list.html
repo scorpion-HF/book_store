@@ -28,10 +28,10 @@
                         {% endwith %}
                     </span>
                     {% if book.image %}
-                    <img src="{{ book.image.url }}" class="img-responsive img-fluid"
+                    <img src="{{ book.image.url }}" class="img-responsive rounded m-2"
                          alt="book image">
                     {% else %}
-                    <img src="{% static 'catalog/book_default.png' %}" class="img-responsive img-fluid"
+                    <img src="{% static 'catalog/book_default.png' %}" class="img-responsive rounded m-2"
                          alt="book image">
                     {% endif %}
                 </div>
