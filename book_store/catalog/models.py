@@ -15,7 +15,7 @@ class Book(models.Model):
         super().save(*args, **kwargs)
         if self.image:
             img = Image.open(self.image.path)
-            output_size = (600, 600)
+            output_size = (225, 255)
             img.thumbnail(output_size)
             img.save(self.image.path)
 

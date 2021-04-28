@@ -55,4 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return reverse('users:profile')
 
     def get_full_name(self):
-        return "{} {}".format(self.first_name, self.last_name)
+        if self.is_superuser:
+            return 'مدیر سایت'
+        else:
+            return "{} {}".format(self.first_name, self.last_name)

@@ -29,14 +29,14 @@
 <div class="comment">
   <h4 class="text-center">نظر شما</h4>
   <div class="well text-center">
-    {% render_comment_form for object %}
+    {% render_comment_form for book %}
   </div>
 </div>
 {% endif %}
 
 {% if comment_count %}
 <ul class="media-list">
-  {% render_xtdcomment_tree for object %}
+  {% render_xtdcomment_tree for book %}
 </ul>
 {% endif %}
 </div>
