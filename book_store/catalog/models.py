@@ -4,13 +4,13 @@ from django_resized import ResizedImageField
 
 
 class Category(models.Model):
-    category = models.CharField(max_length=1, null=False, blank=False, primary_key=True)
+    category = models.CharField(max_length=20, null=False, blank=False, primary_key=True)
 
 
 class Book(models.Model):
     image = ResizedImageField(size=[225, 225], crop=['bottom', 'right'], quality=100, upload_to='books_images/',
                               null=True, blank=True)
-    category = models.ManyToManyField('category', blank=False)
+    category = models.ManyToManyField('Category', blank=False)
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField(blank=False)
@@ -19,7 +19,7 @@ class Book(models.Model):
         ('p', 'نسخه چاپی'),
         ('a', 'نسخه صوتی'),
     ))
-    authors = models.ManyToManyField('author', blank=False)
+    authors = models.ManyToManyField('Author', blank=False)
     allow_comments = models.BooleanField(default=True)
 
     def get_absolute_url(self):
