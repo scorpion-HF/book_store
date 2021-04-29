@@ -1,14 +1,14 @@
 from django.contrib import admin
 from jalali_date import date2jalali
 from jalali_date.admin import ModelAdminJalaliMixin
-from .models import Book, Author
+from .models import Book, Author, Category
 
 
 @admin.register(Book)
 class FirstModelAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     # show jalali date in list display
     list_display = ['__str__', 'price', 'allow_comments', 'date_of_publish_jalali']
-    filter_horizontal = ('authors',)
+    filter_horizontal = ('authors', 'category',)
 
     def date_of_publish_jalali(self, obj):
         return date2jalali(obj.date_of_publish).strftime('%y/%m/%d')
@@ -18,3 +18,4 @@ class FirstModelAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 
 
 admin.site.register(Author)
+admin.site.register(Category)
