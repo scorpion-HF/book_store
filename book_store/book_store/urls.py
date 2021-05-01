@@ -29,5 +29,6 @@ urlpatterns = [
     path('catalog/', include('catalog.urls')),
     path('comments_list/', include('commenting.urls')),
     path('comments/', include('django_comments_xtd.urls')),
+    path('orders/', include('orders.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -14,7 +14,7 @@
 {% block content %}
 <div class="container rtl-div">
     <div class="row">
-        <div class="col-xs-12 col-md-4 text-right m-5">
+        <div class="col-xs-12 col-md-3 text-right mt-5">
             {% if book.image %}
             <img src="{{ book.image.url }}" class="img-responsive img-fluid img-thumbnail"
                  alt="book image">
@@ -23,8 +23,8 @@
                  alt="book image">
             {% endif %}
         </div>
-        <div class="col-xs-12 rtl-div m-5 text-center">
-            <h5 class="m-5">{{ book.title }}</h5>
+        <div class="col-xs-12 col-md-7 rtl-div mt-5 text-center">
+            <h5>{{ book.title }}</h5>
             <p>{{book.description}}</p>
         </div>
     </div>
@@ -53,10 +53,14 @@
         </div>
         <hr>
     </div>
-    <div class=" row text-right m-5">
-        <a href="#" role="button" class="ad-btn-success m-auto">اضافه به سفارش</a>
+    <div class=" row text-center mt-5">
         <a href="{% url 'commenting:comments_list' book.id %}" role="button"
-           class="ad-btn-info m-auto">نظرات</a>
+           class="ad-btn-info mb-2 mr-2">نظرات</a>
+        <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
+            {% csrf_token %}
+            <button class="ad-btn-success mb-auto mr-2" type="submit">اضافه به سبد خرید<i class="fas fa-shopping-cart"></i>
+            </button>
+        </form>
     </div>
 </div>
 

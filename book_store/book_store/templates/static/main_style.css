@@ -110,12 +110,11 @@ h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
         border: 3px solid #87CEEB;
         display: block;
         text-decoration: none;
-        margin: 20px auto 1px auto;
         color: #000;
         overflow: hidden;
         position: relative;
         background-color: #87CEEB;
-    }
+}
 
 .ad-btn-info:hover {
             text-decoration: none;
@@ -129,7 +128,7 @@ h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
 
 .ad-btn-success {
         text-transform: uppercase;
-        width: 150px;
+        width: 200px;
         height: 40px;
         border-radius: 80px;
         font-size: 16px;
@@ -138,7 +137,6 @@ h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
         border: 3px solid #7CFC00;
         display: block;
         text-decoration: none;
-        margin: 20px auto 1px auto;
         color: #000;
         overflow: hidden;
         position: relative;
@@ -154,6 +152,14 @@ h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
             transition: all 0.3s ease;
             box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
         }
+
+        .cart-add {
+    width: 35px;
+    height: 30px;
+    padding: auto;
+    border-radius: 100px;
+    padding-top: 4px;
+}
 
 .ad-title h5 {
         text-transform: uppercase;

@@ -5,6 +5,7 @@ class Order(models.Model):
     user = models.ForeignKey('users.User', on_delete=models.SET_NULL, null=True, blank=False)
     date = models.DateTimeField(auto_now=True, null=False, blank=False)
     address = models.TextField(blank=False, null=False)
+    is_open = models.BooleanField(default=True)
     is_paid = models.BooleanField(default=False)
     is_accepted = models.BooleanField(default=False)
     is_posted = models.BooleanField(default=False)
@@ -19,5 +20,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     item = models.ForeignKey('catalog.Book', on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    Order = models.ForeignKey('Order', on_delete=models.CASCADE, null=False, blank=False)
+    quantity = models.IntegerField(default=1)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE, null=False, blank=False)
+
+

@@ -13,7 +13,6 @@
 </li>
 {% endblock %}
 {% block content %}
-
 <div class="container rtl-div">
     <div class="row" id="ads">
         {% for book in books %}
@@ -28,10 +27,10 @@
                         {% endwith %}
                     </span>
                     {% if book.image %}
-                    <img src="{{ book.image.url }}" class="img-responsive rounded m-2"
+                    <img src="{{ book.image.url }}" class="img-responsive img-fluid rounded m-2 w-75"
                          alt="book image">
                     {% else %}
-                    <img src="{% static 'catalog/book_default.png' %}" class="img-responsive rounded m-2"
+                    <img src="{% static 'catalog/book_default.png' %}" class="img-responsive img-fluid rounded m-2"
                          alt="book image">
                     {% endif %}
                 </div>
@@ -42,6 +41,10 @@
                     <div class="ad-title mb-auto">
                         <h6>{{ book.title }}</h6>
                     </div>
+                    <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                        {% csrf_token %}
+                        <button class="ad-btn-success mb-auto cart-add" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                    </form>
                     <a class="ad-btn-info mb-auto" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
                 </div>
             </div>
