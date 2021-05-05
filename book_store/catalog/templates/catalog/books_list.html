@@ -19,7 +19,13 @@
         <div class="mb-5 col-xm-12 col-sm-6 col-md-4 text-center rtl-div">
             <div class="card rounded h-100">
                 <div class="card-image">
-                    <span class="card-notify-badge">نسخه چاپی</span>
+                    <span class="card-notify-badge">
+                        {% if book.type == 'p' %}
+                             نسخه چاپی
+                        {% elif book.type == 'a' %}
+                             نسخه صوتی
+                        {% endif %}
+                    </span>
                     <span class="card-notify-year">
                         {% with date_of_publish=book.date_of_publish|to_jalali:'%y' %}
                         چاپ
@@ -41,12 +47,14 @@
                     <div class="ad-title mb-auto">
                         <h6>{{ book.title }}</h6>
                     </div>
-                    <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
-                        {% csrf_token %}
-                        <button class="ad-btn-success mb-auto cart-add" type="submit"><i class="fas fa-shopping-cart"></i></button>
-                    </form>
-                    <a class="ad-btn-info mb-auto" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
                 </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <a class="ad-btn-info mr-2" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
+                </div>
+                <form class="d-flex justify-content-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                    {% csrf_token %}
+                    <button class="ad-btn-success cart-add" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                </form>
             </div>
         </div>
         {% endfor %}

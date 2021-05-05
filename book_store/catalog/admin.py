@@ -8,7 +8,7 @@ from .models import Book, Author, Category
 class FirstModelAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     # show jalali date in list display
     list_display = ['__str__', 'price', 'allow_comments', 'date_of_publish_jalali']
-    filter_horizontal = ('authors', 'category',)
+    filter_horizontal = ('authors', 'categories',)
 
     def date_of_publish_jalali(self, obj):
         return date2jalali(obj.date_of_publish).strftime('%y/%m/%d')

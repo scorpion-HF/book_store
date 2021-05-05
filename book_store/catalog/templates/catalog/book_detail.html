@@ -33,27 +33,51 @@
             <table class="table table-sm table-borderless mb-0 text-right">
                 <tbody>
                 <tr>
-                    <th class="pl-0 w-25" scope="row"><strong>قیمت:</strong></th>
-                    <td>{{ book.price|price }}ریال</td>
+                    <th class="pl-0 w-25" scope="row"><strong>موضوع یا موضوعات:</strong></th>
+                    <td>
+                        {% for category in book.categories.all %}
+                        ({{ category }})
+                        &nbsp;
+                        {% endfor %}
+                    </td>
                 </tr>
                 <tr>
-                    <th class="pl-0 w-25" scope="row"><strong>نویسنده:</strong></th>
-                    <td>نام نویسنده</td>
+                    <th class="pl-0 w-25" scope="row"><strong>نویسنده یا نویسندگان:</strong></th>
+                    <td>
+                        {% for author in book.authors.all %}
+                        ({{ author.get_full_name }})
+                        &nbsp;
+                        {% endfor %}
+                    </td>
                 </tr>
                 <tr>
-                    <th class="pl-0 w-25" scope="row"><strong>سال چاپ</strong></th>
+                    <th class="pl-0 w-25" scope="row"><strong>سال چاپ:</strong></th>
                     <td>
                         {% with date_of_publish=book.date_of_publish|to_jalali:'%y/%m/%d' %}
                         {{ date_of_publish|persian_date }}
                         {% endwith %}
                     </td>
                 </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>نوع چاپ:</strong></th>
+                    <td>
+                        {% if book.type == 'p' %}
+                             نسخه چاپی
+                        {% elif book.type == 'a' %}
+                             نسخه صوتی
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>قیمت:</strong></th>
+                    <td>{{ book.price|price }}ریال</td>
+                </tr>
                 </tbody>
             </table>
         </div>
         <hr>
     </div>
-    <div class=" row text-center mt-5">
+    <div class=" row mt-5">
         <a href="{% url 'commenting:comments_list' book.id %}" role="button"
            class="ad-btn-info mb-2 mr-2">نظرات</a>
         <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
