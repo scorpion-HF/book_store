@@ -33,4 +33,4 @@
 body * {
     font-family: "Vazir", Arial, sans-serif;
 }
-input, textarea, select { font-family: "Vazir", Arial, sans-serif; }
+input, textarea, select, .form-row p, form .button { font-family: "Vazir", Arial, sans-serif !important; }

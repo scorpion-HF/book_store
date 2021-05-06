@@ -2,10 +2,12 @@ import logging
 from django.contrib import messages
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
 from django.views.generic import RedirectView, ListView, DeleteView
+from django.views.generic.edit import CreateView
 from django.views.generic.detail import SingleObjectMixin
 from catalog.models import Book
-from .models import Cart, CartItem
+from .models import Cart, CartItem, Order, OrderItem
 from django.shortcuts import reverse
+from .forms import OrderForm
 
 logger = logging.getLogger('django.request')
 
@@ -62,3 +64,23 @@ class RemoveFromCartView(DeleteView):
 
     def get_success_url(self):
         return reverse('orders:user_cart')
+
+
+class CreateOrderView(CreateView):
+    model = Order
+    template_name = 'orders/create_order.html'
+    form_class = OrderForm
+
+    def get_success_url(self):
+        return reverse('orders:user_cart')
+
+    def get_initial(self):
+        self.initial['address'] = self.request.user.address
+        self.initial['postal_code'] = self.request.user.postal_code
+        return self.initial.copy()
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.user = self.request.user
+        return super().form_valid(form)
+

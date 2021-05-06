@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load IR %}
+
+{% block title %}ثبت سفارش{% endblock %}
+{% block content %}
+<div class="container rtl-div mt-5 text-center ">
+    <div class="container text-center">
+        <h3 class="m-5"> ثبت سفارش </h3>
+        <p class="m-5"> کاربر: {{ request.user.get_full_name }} </p>
+    </div>
+    <div class="container d-flex justify-content-center mb-3">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="ad-btn-info mr-5" type="submit" value="ثبت سفارش">
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+
