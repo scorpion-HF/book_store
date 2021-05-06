@@ -6,7 +6,7 @@
 {% load i18n static %}
 
 {% block content %}
-<div class="container text-center p-5">
+<div class="container rtl-div col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center p-5">
     <h1>ورود کاربر</h1>
     <form class="login" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
@@ -14,8 +14,8 @@
       {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <button class="btn btn-success primaryAction" type="submit">ورود</button>
-      <a class="btn btn-warning button secondaryAction" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
+      <button class="btn btn-success primaryAction mb-3" type="submit">ورود</button><br>
+      <a class="btn btn-warning button secondaryAction mb-3" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
       <p>در صورتی که حساب کاربری ندارید نسبت به ساخت حساب کاربری جدید اقدام فرمایید<br><a class="btn btn-primary" href="{{ signup_url }}">ساخت حساب کاربری</a></p>
     </form>
 </div>

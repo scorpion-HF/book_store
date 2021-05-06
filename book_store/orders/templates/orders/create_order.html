@@ -8,13 +8,15 @@
 <div class="container rtl-div mt-5 text-center ">
     <div class="container text-center">
         <h3 class="m-5"> ثبت سفارش </h3>
+        <hr class="mb-4">
         <p class="m-5"> کاربر: {{ request.user.get_full_name }} </p>
+        <hr class="mb-4">
     </div>
-    <div class="container d-flex justify-content-center mb-3">
+    <div class="container text-center mb-3">
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <input class="ad-btn-info mr-5" type="submit" value="ثبت سفارش">
+            <input class="btn btn-primary" type="submit" value="ثبت سفارش">
         </form>
     </div>
 </div>

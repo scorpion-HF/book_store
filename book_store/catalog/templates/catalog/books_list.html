@@ -48,12 +48,12 @@
                         <h6>{{ book.title }}</h6>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center mb-3">
-                    <a class="ad-btn-info mr-2" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
+                <div class="text-center mb-3">
+                    <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
                 </div>
-                <form class="d-flex justify-content-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                <form class="text-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
                     {% csrf_token %}
-                    <button class="ad-btn-success cart-add" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="btn btn-success" type="submit"><i class="fas fa-shopping-cart"></i></button>
                 </form>
             </div>
         </div>
