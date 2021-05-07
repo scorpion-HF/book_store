@@ -8,11 +8,12 @@ from catalog.models import Book
 from .models import Cart, CartItem, Order, OrderItem
 from django.shortcuts import reverse
 from .forms import OrderForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 logger = logging.getLogger('django.request')
 
 
-class UserCartView(ListView):
+class UserCartView(LoginRequiredMixin, ListView):
     template_name = 'orders/user_cart.html'
     context_object_name = 'cart_items'
 
@@ -26,7 +27,7 @@ class UserCartView(ListView):
         return context
 
 
-class AddToCartView(RedirectView, SingleObjectMixin):
+class AddToCartView(LoginRequiredMixin, RedirectView, SingleObjectMixin):
     model = Book
 
     def get(self, request, *args, **kwargs):
@@ -59,14 +60,14 @@ class AddToCartView(RedirectView, SingleObjectMixin):
         return self.get(request, *args, **kwargs)
 
 
-class RemoveFromCartView(DeleteView):
+class RemoveFromCartView(LoginRequiredMixin, DeleteView):
     model = CartItem
 
     def get_success_url(self):
         return reverse('orders:user_cart')
 
 
-class CreateOrderView(CreateView):
+class CreateOrderView(LoginRequiredMixin, CreateView):
     model = Order
     template_name = 'orders/create_order.html'
     form_class = OrderForm

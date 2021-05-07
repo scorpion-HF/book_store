@@ -34,17 +34,21 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=254, unique=True)
-    first_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=50, null=True)
-    phone_number = models.CharField(max_length=10, blank=True, null=True)
-    address = models.TextField(null=True, blank=True)
-    postal_code = models.CharField(max_length=10, null=True, blank=True)
+    email = models.EmailField(max_length=254, unique=True, verbose_name='پست الکترونیک')
+    first_name = models.CharField(max_length=50, null=True, verbose_name='نام')
+    last_name = models.CharField(max_length=50, null=True, verbose_name='نام خانوادگی')
+    phone_number = models.CharField(max_length=10, blank=True, null=True, verbose_name='شماره تلفن همراه')
+    address = models.TextField(null=True, blank=True, verbose_name='آدرس')
+    postal_code = models.CharField(max_length=10, null=True, blank=True, verbose_name='کد پستی')
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    last_login = models.DateTimeField(null=True, blank=True)
-    date_joined = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True, verbose_name='فعال')
+    last_login = models.DateTimeField(null=True, blank=True, verbose_name='تاریخ آخرین ورود')
+    date_joined = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ عضویت')
+
+    class Meta:
+        verbose_name = 'کاربر'
+        verbose_name_plural = 'کاربران'
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
