@@ -83,5 +83,14 @@ class CreateOrderView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         self.object.user = self.request.user
+        self.object.save()
+        cart, cart_created = Cart.objects.get_or_create(user=self.request.user)
+        cart_items = cart.cartitem_set.all()
+        for cart_item in cart_items:
+            order_item = OrderItem.objects.create(order=self.object,
+                                                  item_title=cart_item.item.title,
+                                                  item_price=cart_item.item.price,
+                                                  item_quantity=cart_item.quantity)
+            order_item.save()
+            cart_item.delete()
         return super().form_valid(form)
-
