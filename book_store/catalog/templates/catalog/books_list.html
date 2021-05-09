@@ -16,7 +16,7 @@
 <div class="container rtl-div">
     <div class="row" id="ads">
         {% for book in books %}
-        <div class="mb-5 col-xm-12 col-sm-6 col-md-4 text-center rtl-div">
+        <div class="mb-5 col-xm-12 col-sm-6 col-lg-4 text-center rtl-div">
             <div class="card rounded h-100">
                 <div class="card-image">
                     <span class="card-notify-badge">
@@ -40,26 +40,62 @@
                          alt="book image">
                     {% endif %}
                 </div>
-                <div class="card-image-overlay mb-auto">
-                    <span class="card-detail-badge">{{ book.price|price }}ریال</span>
-                </div>
                 <div class="card-body text-center">
-                    <div class="ad-title mb-auto">
-                        <h6>{{ book.title }}</h6>
+                    <div class="ad-title mb-2">
+                        <h5>{{ book.title }}</h5>
                     </div>
                 </div>
-                <div class="text-center mb-3">
-                    <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
+                <div class="card-image-overlay mb-1 ml-1 mr-1">
+                    <span class="card-detail-badge">
+                        {% for author in book.authors.all %}
+                            {{ author.get_full_name }}
+                            &nbsp;
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="card-image-overlay mb-2">
+                    <span class="card-detail-badge">{{ book.price|price }}ریال</span>
                 </div>
                 <form class="text-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
                     {% csrf_token %}
                     <button class="btn btn-success" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                    <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
                 </form>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+{% if page_obj.has_next or page_obj.has_previous %}
+<div class="container rtl-div">
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link ml-1" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">قبلی</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link ml-1" href=# tabindex="-1">قبلی</a>
+            </li>
+            {% endif %}
+            <li class="page-item active">
+                <a class="page-link ml-1 mr-1" href="#">صفحه {{ page_obj.number|persian_int }} از {{ page_obj.paginator.num_pages|persian_int }} <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            {% if page_obj.has_next %}
+            <li class="page-item mr-1">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link mr-1" href=#>بعدی</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
 {% endblock %}
 
 
