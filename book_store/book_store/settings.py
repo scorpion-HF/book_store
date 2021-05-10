@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import locale
 import environ
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -52,7 +53,11 @@ INSTALLED_APPS = [
     'catalog',
     'crispy_forms',
     'orders',
+    'captcha',
 ]
+
+ACCOUNT_FORMS = {'login': 'users.forms.AllauthLoginForm',
+                 'signup': 'users.forms.AllauthSignupForm'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -213,3 +218,5 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'

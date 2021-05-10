@@ -1,5 +1,7 @@
 from django.forms import ModelForm, TextInput, Textarea
 from .models import User
+from allauth.account.forms import SignupForm, LoginForm
+from captcha.fields import CaptchaField
 
 
 class ProfileForm(ModelForm):
@@ -13,3 +15,12 @@ class ProfileForm(ModelForm):
             'postal_code': TextInput(attrs={'class': 'form-control here'}),
             'address': Textarea(attrs={'class': 'form-control'}),
         }
+
+
+class AllauthSignupForm(SignupForm):
+    captcha = CaptchaField(label='حاصل عبارت را وارد نمایید:')
+    field_order = ('email', 'password1', 'password2', 'captcha')
+
+
+class AllauthLoginForm(LoginForm):
+    captcha = CaptchaField(label='حاصل عبارت را وارد نمایید:')
