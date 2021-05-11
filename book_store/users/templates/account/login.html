@@ -11,9 +11,6 @@
     <form class="login" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
       {{ form|crispy }}
-      {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
       <button class="btn btn-success primaryAction mb-3" type="submit">ورود</button><br>
       <a class="btn btn-warning button secondaryAction mb-3" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
       <p>در صورتی که حساب کاربری ندارید نسبت به ساخت حساب کاربری جدید اقدام فرمایید<br><a class="btn btn-primary" href="{{ signup_url }}">ساخت حساب کاربری</a></p>
@@ -22,3 +19,6 @@
 
 
 {% endblock %}
+
+
+

@@ -27,6 +27,13 @@
 }
 
 /* basic styles */
+.invalid-feedback {
+  display: block !important;
+}
+
+.alert-danger ul {
+  list-style: none !important;
+}
 
 * {
   font-family: "Vazir", Arial, sans-serif;
