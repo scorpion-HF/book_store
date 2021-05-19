@@ -68,6 +68,14 @@
                         {% endif %}
                     </td>
                 </tr>
+                {% if book.file %}
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>فایل:</strong></th>
+                    <td>
+                        <a href="{{ book.file.url }}" target="_blank">مشاهده فایل</a>
+                    </td>
+                </tr>
+                {% endif %}
                 <tr>
                     <th class="pl-0 w-25" scope="row"><strong>قیمت:</strong></th>
                     <td>{{ book.price|price }}ریال</td>

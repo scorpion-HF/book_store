@@ -6,9 +6,9 @@
 {% block title %} لیست کتاب ها {% endblock %}
 {% block extra_nav_item %}
 <li class="nav-item">
-    <form class="form-inline text-center">
-        <input class="form-control mr-sm-2" type="search" placeholder="نام کتاب" aria-label="Search">
-        <a href="#" class="btn btn-primary">مشاهده</a>
+    <form class="form-inline text-center" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="نام کتاب" aria-label="Search" name="term">
+        <button class="btn btn-primary" type="submit">مشاهده</button>
     </form>
 </li>
 {% endblock %}

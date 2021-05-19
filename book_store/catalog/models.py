@@ -18,6 +18,7 @@ class Category(models.Model):
 class Book(models.Model):
     image = ResizedImageField(size=[225, 225], crop=['bottom', 'right'], quality=100, upload_to='books_images/',
                               null=True, blank=True, verbose_name='تصویر')
+    file = models.FileField(upload_to='books_files/', null=True, blank=True, verbose_name='فایل')
     categories = models.ManyToManyField('Category', blank=False, verbose_name='دسته بندی ها')
     title = models.CharField(max_length=100, blank=False, null=False, verbose_name='عنوان')
     description = models.TextField(null=True, blank=True, verbose_name='توضیحات')
