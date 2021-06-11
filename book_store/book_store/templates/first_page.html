@@ -3,9 +3,69 @@
 {% block title %} انتشارات اقیانوس دانش {% endblock %}
 
 {% block content %}
-<div class="container-fluid bg-primary h-100 text-center">
-    <div class="container col-xs-12 col-sm-10 col-md-6 p-5">
-        <img class="w-100 rounded-circle" src="{% static 'logo.jpg' %}" alt="logo">
-    </div>
+<div class="row">
+  <img class="img-fluid w-100 mb-4" src="{% static 'banner.jpg' %}" alt="banner">
 </div>
+<div class="row rtl-div">
+<div class="card col-lg rtl-div text-center m-1" style="background-color:#9932CC">
+  <div class="card-body">
+    <h5 class="card-title">تنوع محصولات</h5>
+    <h6 class="card-subtitle mb-2 text-muted">کتاب ها با موضوعات متنوع</h6>
+    <p class="card-text">از محصولات متنوع ما دیدن فرمایید</p>
+    <a href="#" class="card-link btn btn-primary">مشاهده محصولات</a>
+  </div>
+</div>
+<div class="card col-lg rtl-div text-center m-1" style="background-color:#7FFF00">
+  <div class="card-body">
+    <h5 class="card-title">حساب کاربری</h5>
+    <h6 class="card-subtitle mb-2 text-muted">عضویت با ساخت حساب کاربری</h6>
+    <p class="card-text">جهت ثبت سفارش و استفاده از امکانات بیشتر نسبت به ساخت حساب کاربری اقدام نمایید</p>
+    <a href="#" class="card-link btn btn-primary">ثبت نام</a>
+    <a href="#" class="card-link btn btn-primary">ورود به حساب</a>
+  </div>
+</div>
+<div class="card col-lg rtl-div text-center m-1 " style="background-color:#FFD700">
+  <div class="card-body">
+    <h5 class="card-title">آشنایی بیشتر</h5>
+    <h6 class="card-subtitle mb-2 text-muted">آشنایی با انتشارات اقیانوس دانش و راه های ارتباطی</h6>
+    <p class="card-text">با انتشارات اقیانوس دانش بیشتر آشنا شوید و از طریق راه های ارتباطی با ما در تماس باشید</p>
+    <a href="#" class="card-link btn btn-primary">درباره ما</a>
+    <a href="#" class="card-link btn btn-primary">تماس با ما</a>
+  </div>
+</div>
+</div>
+<div class="container d-flex justify-content-center">
+
+<div class="card-deck m-5">
+  <div class="card" style="background-color:#AFEEEE">
+    <img class="card-img-top rounded-circle w-25 m-2" src="{% static 'logo1.png' %}" alt="azad university logo">
+    <div class="card-body text-center">
+      <h5 class="card-title">دانشگاه آزاد اسلامی</h5>
+    </div>
+    <div class="card-footer text-center">
+      <small class="text-muted"><a href="http://edu.iau.ac.ir/" target="_blank">مشاهده وب سایت</a></small>
+    </div>
+  </div>
+  <div class="card" style="background-color:#AFEEEE">
+    <img class="card-img-top rounded-circle w-25 m-2" src="{% static 'logo2.jpg' %}" alt="science ministry logo">
+    <div class="card-body text-center">
+      <h5 class="card-title">وزارت علوم، تحقیقات و فناوری</h5>
+    </div>
+    <div class="card-footer text-center">
+      <small class="text-muted"><a href="https://www.msrt.ir/fa" target="_blank">مشاهده وب سایت</a></small>
+    </div>
+  </div>
+  <div class="card" style="background-color:#AFEEEE">
+    <img class="card-img-top rounded-circle w-25 m-2" src="{% static 'logo3.png' %}" alt="aja logo">
+    <div class="card-body text-center">
+      <h5 class="card-title">ارتش جمهوری اسلامی ایران</h5>
+    </div>
+    <div class="card-footer text-center">
+      <small class="text-muted"><a href="https://www.aja.ir/portal/home/" target="_blank">مشاهده وب سایت</a></small>
+    </div>
+  </div>
+</div>
+</div>
+
+
 {% endblock %}
