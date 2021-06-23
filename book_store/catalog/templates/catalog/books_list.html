@@ -56,11 +56,15 @@
                 <div class="card-image-overlay mb-2">
                     <span class="card-detail-badge">{{ book.price|price }}ریال</span>
                 </div>
-                <form class="text-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-success" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                {% if not request.user.is_superuser %}
+                    <form class="text-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-success" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                        <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
+                    </form>
+                {% else %}
                     <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
-                </form>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

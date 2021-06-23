@@ -8,8 +8,10 @@
     <link href="{% static 'django_comments_xtd/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'django_comments_xtd/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="#">
-    <title>{% block title %}انتشارات اقیانوس دانش{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <title>
+        {% block title %}انتشارات اقیانوس دانش{% endblock %}
+    </title>
     {% block extra_head %}
     {% endblock %}
 </head>

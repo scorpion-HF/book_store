@@ -37,7 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=254, unique=True, verbose_name='پست الکترونیک')
     first_name = models.CharField(max_length=50, null=True, verbose_name='نام')
     last_name = models.CharField(max_length=50, null=True, verbose_name='نام خانوادگی')
-    phone_number = models.CharField(max_length=10, blank=True, null=True, verbose_name='شماره تلفن همراه')
+    phone_number = models.CharField(max_length=11, blank=True, null=True, verbose_name='شماره تلفن همراه')
     address = models.TextField(null=True, blank=True, verbose_name='آدرس')
     postal_code = models.CharField(max_length=10, null=True, blank=True, verbose_name='کد پستی')
     is_staff = models.BooleanField(default=False)

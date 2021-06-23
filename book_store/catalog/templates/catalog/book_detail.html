@@ -88,11 +88,13 @@
     <div class="conainer text-center">
         <a href="{% url 'commenting:comments_list' book.id %}"
            class="btn btn-primary mb-3">نظرات</a>
-        <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
-            {% csrf_token %}
-            <button class="btn btn-success" type="submit">اضافه به سبد خرید<i class="fas fa-shopping-cart"></i>
-            </button>
-        </form>
+        {% if not request.user.is_superuser %}
+            <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">اضافه به سبد خرید<i class="fas fa-shopping-cart"></i>
+                </button>
+            </form>
+        {% endif %}
     </div>
 </div>
 
