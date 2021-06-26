@@ -39,7 +39,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     user = models.ForeignKey('users.User', on_delete=models.SET_NULL, null=True, blank=False, verbose_name='کاربر')
     date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ سفارش')
-    post_code = models.IntegerField(blank=True, null=True, verbose_name='کد رهگیری پستی')
+    post_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='کد رهگیری پستی')
     address = models.TextField(blank=False, null=False, verbose_name='آدرس ارسال')
     postal_code = models.CharField(max_length=10, blank=False, null=False, default=0, verbose_name='کد پستی')
     is_paid = models.BooleanField(default=False, blank=False, verbose_name='پرداخت شده')

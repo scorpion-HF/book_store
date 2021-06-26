@@ -10,6 +10,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی ها'
+        ordering = ('category',)
 
     def __str__(self):
         return self.category
@@ -35,6 +36,7 @@ class Book(models.Model):
     class Meta:
         verbose_name = 'کتاب'
         verbose_name_plural = 'کتاب ها'
+        ordering = ('date_of_publish', 'title')
 
     def get_absolute_url(self):
         return reverse('catalog:book_detail', kwargs={'pk': self.id})

@@ -59,9 +59,14 @@
                                   <button name="submit" type="submit" class="btn btn-primary m-1">بروزرسانی پروفایل</button>
                                   <a href="{% url 'account_email' %}" role="button" class="btn btn-info btn-md m-1 ">مدیریت ایمیل</a>
                                   <a href="{% url 'account_change_password' %}" role="button" class="btn btn-danger btn-md m-1 ">تغییر کلمه عبور</a>
+                                  {% if request.user.is_superuser %}
+                                    <a href="{% url 'admin:index' %}" role="button" class="btn btn-warning btn-md m-1 ">پنل مدیریت</a>
+                                  {% endif %}
                                     <hr>
-                                  <a href="{% url 'orders:user_cart' %}" role="button" class="btn btn-success btn-md m-1 ">مشاهده سبد خرید</a>
-                                  <a href="{% url 'orders:orders_list' %}" role="button" class="btn btn-warning btn-md m-1 ">مشاهده سفارشات</a>
+                                  {% if not request.user.is_superuser %}
+                                      <a href="{% url 'orders:user_cart' %}" role="button" class="btn btn-success btn-md m-1 ">مشاهده سبد خرید</a>
+                                      <a href="{% url 'orders:orders_list' %}" role="button" class="btn btn-warning btn-md m-1 ">مشاهده سفارشات</a>
+                                  {% endif %}
                                 </div>
                               </div>
                             </form>

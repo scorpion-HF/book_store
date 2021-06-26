@@ -5,17 +5,22 @@ from .models import Book, Author, Category
 
 
 @admin.register(Book)
-class FirstModelAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
-    # show jalali date in list display
-    list_display = ['__str__', 'price', 'allow_comments', 'date_of_publish_jalali']
+class BookModelAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+    list_display = ['title', 'price', 'date_of_publish_jalali']
     filter_horizontal = ('authors', 'categories',)
 
     def date_of_publish_jalali(self, obj):
         return date2jalali(obj.date_of_publish).strftime('%y/%m/%d')
 
-    date_of_publish_jalali.short_description = 'تاریخ ایجاد'
-    date_of_publish_jalali.admin_order_field = 'created'
+    date_of_publish_jalali.short_description = 'تاریخ چاپ'
+    date_of_publish_jalali.admin_order_field = 'date_of_publish'
 
 
-admin.site.register(Author)
-admin.site.register(Category)
+@admin.register(Author)
+class AuthorModelAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', ]
+
+
+@admin.register(Category)
+class CategoryModelAdmin(admin.ModelAdmin):
+    list_display = ['category', ]
