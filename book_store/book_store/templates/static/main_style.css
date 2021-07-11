@@ -53,6 +53,10 @@ body {
     margin: 30px 0 30px 0;
 }
 
+.asteriskField {
+display: none !important;
+}
+
 .card-notify-badge {
         position: absolute;
         left: -10px;

@@ -144,6 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
+# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'fa-ir'
 locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
 
@@ -218,5 +219,6 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+
+MERCHANT = env('MERCHANT')

@@ -1,7 +1,6 @@
 from django.urls import path, re_path
-from .views import AddToCartView, UserCartView, RemoveFromCartView, CreateOrderView, UserOrdersView, OrderDetailView
-
-'''from .views import send_request, verify'''
+from .views import AddToCartView, UserCartView, RemoveFromCartView, CreateOrderView,\
+    UserOrdersView, OrderDetailView, send_request, verify
 
 app_name = 'orders'
 urlpatterns = [
@@ -11,6 +10,6 @@ urlpatterns = [
     path('orders/', UserOrdersView.as_view(), name='orders_list'),
     path('new_order/', CreateOrderView.as_view(), name='new_order'),
     path('orders/<int:pk>/', OrderDetailView.as_view(), name='order_detail'),
-    # re_path(r'^request/<int:order_id>/$', send_request, name='payment_request'),
-    # re_path(r'^verify/<int:order_id>/$', verify, name='verify_payment'),
+    path('request/<int:order_id>/', send_request, name='payment_request'),
+    path('verify/<int:order_id>/', verify, name='verify_payment'),
 ]

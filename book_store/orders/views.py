@@ -9,11 +9,10 @@ from .models import Cart, CartItem, Order, OrderItem
 from django.shortcuts import reverse
 from .forms import OrderForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# from django.urls import reverse_lazy
-# from django.http import HttpResponse
-# from django.shortcuts import redirect
-# from zeep import Client
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from zeep import Client
+from django.conf import settings
 
 logger = logging.getLogger('django.request')
 
@@ -78,7 +77,7 @@ class CreateOrderView(LoginRequiredMixin, CreateView):
     form_class = OrderForm
 
     def get_success_url(self):
-        return reverse('orders:user_cart')
+        return reverse('orders:payment_request', args=[self.object.id])
 
     def get_initial(self):
         self.initial['address'] = self.request.user.address
@@ -118,17 +117,13 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-'''
-MERCHANT = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
-
-
 def send_request(request, order_id):
-    order = Order.objects.get(order_id=order_id)
+    order = Order.objects.get(id=order_id)
     client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
-    result = client.service.PaymentRequest(MERCHANT, order.get_total() / 10,
+    result = client.service.PaymentRequest(settings.MERCHANT, order.get_total() / 10,
                                            'پرداخت مربوط به سفارش با کد{}'.format(order_id),
                                            request.user.email, request.user.phone_number,
-                                           reverse_lazy('orders:verify_payment', order_id=order_id))
+                                           'http://localhost:8000/orders/verify/{}/'.format(order_id))
     if result.Status == 100:
         return redirect('https://www.zarinpal.com/pg/StartPay/' + str(result.Authority))
     else:
@@ -136,16 +131,23 @@ def send_request(request, order_id):
 
 
 def verify(request, order_id):
-    order = Order.objects.get(order_id=order_id)
+    order = Order.objects.get(id=order_id)
     client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
     if request.GET.get('Status') == 'OK':
-        result = client.service.PaymentVerification(MERCHANT, request.GET['Authority'], order.get_total() / 10)
+        result = client.service.PaymentVerification(settings.MERCHANT, request.GET['Authority'], order.get_total() / 10)
         if result.Status == 100:
-            return HttpResponse('Transaction success.\nRefID: ' + str(result.RefID))
+            order.is_paid = True
+            order.save()
+            messages.success(request, 'پرداخت با موفقیت انجام شد')
+            return redirect('orders:order_detail', order_id)
         elif result.Status == 101:
-            return HttpResponse('Transaction submitted : ' + str(result.Status))
+            order.is_paid = True
+            order.save()
+            messages.success(request, 'تراکنش معتبر است:101 ')
+            return redirect('orders:order_detail', order_id)
         else:
-            return HttpResponse('Transaction failed.\nStatus: ' + str(result.Status))
+            messages.error(request, 'عملیات پرداخت با خطا مواجه شد')
+            return redirect('orders:order_detail', order_id)
     else:
-        return HttpResponse('Transaction failed or canceled by user')
-'''
+        messages.error(request, 'عملیات پرداخت با خطا مواجه شد')
+        return redirect('orders:order_detail', order_id)

@@ -33,6 +33,13 @@
                                     </div>
                                     <div>
                                         <p class="mb-0"><span><strong>
+                                            {% if order.is_paid %}
+                                                پرداخت انجام شده است
+                                            {% else %}
+                                                <a href="{% url 'orders:payment_request' order.id %}" class="btn btn-primary">تکمیل پرداخت</a>
+                                            {% endif %}
+                                        </strong></span></p>
+                                        <p class="mb-0"><span><strong>
                                             {% if order.post_code %}
                                             کد رهگیری پستی: {{ order.post_code|persian_int }}
                                             {% else %}

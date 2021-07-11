@@ -1,4 +1,4 @@
-from django.views.generic import UpdateView, ListView
+from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
 from .forms import ProfileForm
