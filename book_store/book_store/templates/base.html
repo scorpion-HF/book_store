@@ -38,13 +38,13 @@
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle text-right" href="#" id="navbarDropdownMenuLink" role="button"
+                        <a class="nav-link dropdown-toggle text-right" href="{% url 'users:profile' %}" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ request.user.get_full_name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item text-right" href="{% url 'admin:index' %}">پنل مدیریت</a>
-                            <a class="dropdown-item text-right" href="{% url 'users:profile' %}">پروفایل</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %} text-right" href="{% url 'users:profile' %}">پروفایل</a>
                             <a class="dropdown-item text-right" href="{% url 'account_logout' %}">خروج</a>
                         </div>
                     </li>
@@ -59,9 +59,10 @@
                             {% endif %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item text-right" href="{% url 'users:profile' %}">پروفایل</a>
-                            <a class="dropdown-item text-right" href="{% url 'orders:user_cart' %}">سبد خرید</a>
-                            <a class="dropdown-item text-right" href="{% url 'orders:orders_list' %}">سفارشات</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %} text-right"
+                               href="{% url 'users:profile' %}">پروفایل</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'user_cart' %}active{% endif %} text-right" href="{% url 'orders:user_cart' %}">سبد خرید</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'orders_list' %}active{% endif %} text-right" href="{% url 'orders:orders_list' %}">سفارشات</a>
                             <a class="dropdown-item text-right" href="{% url 'account_logout' %}">خروج</a>
                         </div>
                     </li>
