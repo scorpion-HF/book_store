@@ -81,6 +81,7 @@ class CreateOrderView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         self.initial['address'] = self.request.user.address
+        self.initial['phone_number'] = self.request.user.phone_number
         self.initial['postal_code'] = self.request.user.postal_code
         return self.initial.copy()
 
@@ -104,6 +105,7 @@ class UserOrdersView(LoginRequiredMixin, ListView):
     model = Order
     template_name = 'orders/user_orders.html'
     context_object_name = 'orders'
+    ordering = ['-date']
 
 
 class OrderDetailView(LoginRequiredMixin, DetailView):
@@ -146,8 +148,8 @@ def verify(request, order_id):
             messages.success(request, 'تراکنش معتبر است:101 ')
             return redirect('orders:order_detail', order_id)
         else:
-            messages.error(request, 'عملیات پرداخت با خطا مواجه شد')
+            messages.error(request, 'عملیات پرداخت با خطا مواجه شد. سفارش ذخیره شده است و می توانید مججد نسبت به پرداخت اقدام فرمایید')
             return redirect('orders:order_detail', order_id)
     else:
-        messages.error(request, 'عملیات پرداخت با خطا مواجه شد')
+        messages.error(request, 'عملیات پرداخت با خطا مواجه شد. سفارش ذخیره شده است و می توانید مججد نسبت به پرداخت اقدام فرمایید')
         return redirect('orders:order_detail', order_id)

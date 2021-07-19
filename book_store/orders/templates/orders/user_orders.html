@@ -27,19 +27,31 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <p><h5 class="text-right">سفارش شماره {{ order.id|persian_int }} </h5></p>
-                                        <p class="mb-3 text-muted text-uppercase small text-right">آدرس: {{ order.address }}</p>
-                                        <p class="mb-3 text-muted text-uppercase small text-right">کد پستی: {{ order.postal_code|persian_int }}</p>
-                                        <p class="mb-2 text-muted text-uppercase small text-right">مجموع: {{ order.get_total|price }}ریال</p>
+                                        <p class="mb-3 text-muted text-uppercase small text-right">
+                                            تاریخ:
+                                            {% with order_date=order.date|to_jalali:'%y/%m/%d' %}
+                                            {{ order_date|persian_date }}
+                                            {% endwith %}
+                                        </p>
+                                        <p class="mb-3 text-muted text-uppercase small text-right">
+                                            ساعت:
+                                            {% with order_time=order.date|to_jalali:'%H:%M:%S' %}
+                                            {{ order_time|persian_time }}
+                                            {% endwith %}
+                                        </p>
                                     </div>
                                     <div>
-                                        <p class="mb-0"><span><strong>
+                                        <p class="mb-3"><span><strong>
                                             {% if order.is_paid %}
                                                 پرداخت انجام شده است
                                             {% else %}
                                                 <a href="{% url 'orders:payment_request' order.id %}" class="btn btn-primary">تکمیل پرداخت</a>
                                             {% endif %}
                                         </strong></span></p>
-                                        <p class="mb-0"><span><strong>
+                                        <p class="mb-3"><span><strong>
+                                            مجموع: {{ order.get_total|price }}ریال
+                                        </strong></span></p>
+                                        <p class="mb-3"><span><strong>
                                             {% if order.post_code %}
                                             کد رهگیری پستی: {{ order.post_code|persian_int }}
                                             {% else %}

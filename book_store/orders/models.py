@@ -43,6 +43,7 @@ class Order(models.Model):
     address = models.TextField(blank=False, null=False, verbose_name='آدرس ارسال')
     postal_code = models.CharField(max_length=10, blank=False, null=False, default=0, verbose_name='کد پستی')
     is_paid = models.BooleanField(default=False, blank=False, verbose_name='پرداخت شده')
+    phone_number = models.CharField(max_length=11, blank=True, null=True, verbose_name='شماره تلفن')
 
     class Meta:
         verbose_name = 'سفارش'

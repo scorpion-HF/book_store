@@ -22,6 +22,17 @@ def persian_date(english_date):
     return date
 
 
+@register.filter(name='persian_time')
+def persian_date(english_time):
+    devanagari_nums = ('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹')
+    time = ''
+    for i in english_time:
+        if i == ':':
+            time += ':'
+        else:
+            time += devanagari_nums[int(i)]
+    return time
+
 @register.filter(name='price')
 def price(input_int):
     devanagari_nums = ('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹')
