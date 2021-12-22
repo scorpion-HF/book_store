@@ -1,0 +1,7 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %} یک حساب کاربری با آدرس ایمیل شما در سایت انتشارات اقیانوس دانش ساخته شده است برای تایید این حساب کاربری روی لینک فعال سازی حساب کلیک کنید
+
+ {{ activate_url }}{% endblocktrans %}{% endautoescape %}{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% load jalali_tags %}
+{% load IR %}
+{% block title %}لیست کتاب ها{% endblock %}
+{% block description %}
+انتشارات اقیانوس دانش - فهرست کتاب های قابل ارائه به مشتریان عزیز - ارسال کتاب در اسرع وقت به سراسر کشور - کتاب های چاپی و الکترونیکی در موضوعات متنوع - کتاب های دانشگاهی و پرکاربرد برای دانشجویان عزیز
+{% endblock %}endblock %}
+{% block extra_nav_item %}
+<li class="nav-item">
+    <form class="form-inline text-center" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="نام کتاب" aria-label="Search" name="term">
+        <button class="btn btn-primary" type="submit">مشاهده</button>
+    </form>
+</li>
+{% endblock %}
+{% block content %}
+<div class="container rtl-div">
+    <div class="rtl-div text-center m-2">
+        <h1 style="font-size: 32px;">مشاهده محصولات</h1>
+    </div>
+    <div class="row" id="ads">
+        {% for book in books %}
+        <div class="mb-5 col-xm-12 col-sm-6 col-lg-4 text-center rtl-div">
+            <div class="card rounded h-100" style="background-color: #87CEFA;">
+                <div class="card-image">
+                    <span class="card-notify-badge">
+                        {% if book.printedbook %}
+                        چاپی
+                        {% else %}
+                        الکترونیکی
+                        {% endif %}
+                    </span>
+                    <span class="card-notify-year">
+                        {% with date_of_publish=book.date_of_publish|to_jalali:'%y' %}
+                        چاپ
+                        {{ date_of_publish|persian_int }}
+                        {% endwith %}
+                    </span>
+                    {% if book.image %}
+                    <img src="{{ book.image.url }}" class="img-responsive img-fluid rounded m-2 w-75"
+                         alt="book image">
+                    {% else %}
+                    <img src="{% static 'catalog/book_default.png' %}" class="img-responsive img-fluid rounded m-2"
+                         alt="book image">
+                    {% endif %}
+                </div>
+                <div class="card-body text-center">
+                    <div class="ad-title mb-2">
+                        <h5>{{ book.title }}</h5>
+                    </div>
+                </div>
+                <div class="card-image-overlay mb-1 ml-1 mr-1">
+                    <span class="card-detail-badge">
+                        {% if book.electronicbook %}
+                        {% for author in book.electronicbook.authors.all %}
+                        ({{ author.get_full_name }})
+                        &nbsp;
+                        {% endfor %}
+                        {% else %}
+                        {% for author in book.printedbook.authors.all %}
+                        ({{ author.get_full_name }})
+                        &nbsp;
+                        {% endfor %}
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="card-image-overlay mb-2">
+                    <span class="card-detail-badge">{{ book.price|price }}ریال</span>
+                </div>
+                {% if not request.user.is_superuser %}
+                    <form class="text-center" method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-success" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                        <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
+                    </form>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'catalog:book_detail' book.id %}">مشاهده</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% if page_obj.has_next or page_obj.has_previous %}
+<div class="container rtl-div">
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link ml-1" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">قبلی</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link ml-1" href=# tabindex="-1">قبلی</a>
+            </li>
+            {% endif %}
+            <li class="page-item active">
+                <a class="page-link ml-1 mr-1" href="#">صفحه {{ page_obj.number|persian_int }} از {{ page_obj.paginator.num_pages|persian_int }} <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            {% if page_obj.has_next %}
+            <li class="page-item mr-1">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link mr-1" href=#>بعدی</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
+{% endblock %}
+
+
+

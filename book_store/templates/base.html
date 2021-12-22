@@ -1,0 +1,112 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="{% static 'django_comments_xtd/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'django_comments_xtd/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main_style.css' %}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <title>
+        {% block title %}{% endblock %} - انتشارات اقیانوس دانش
+    </title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'landing' %}">
+        انتشارات اقیانوس دانش
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto" style="direction: rtl;">
+            <li class="nav-item {% if request.resolver_match.url_name == 'books_list' %}active{% endif %}">
+                <a class="nav-link text-right" href="{% url 'catalog:books_list' %}">محصولات<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {% if request.resolver_match.url_name == 'about' %}active{% endif %}">
+                <a class="nav-link text-right" href="{% url 'about' %}">درباره ما</a>
+            </li>
+            <li class="nav-item {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+                <a class="nav-link text-right" href="{% url 'contact' %}">تماس با ما</a>
+            </li>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle text-right" href="{% url 'users:profile' %}" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ request.user.get_full_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item text-right" href="{% url 'admin:index' %}">پنل مدیریت</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %} text-right" href="{% url 'users:profile' %}">پروفایل</a>
+                            <a class="dropdown-item text-right" href="{% url 'account_logout' %}">خروج</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-right" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if request.user.last_name and request.user.first_name %}
+                                {{ request.user.get_full_name }}
+                            {% else %}
+                                بدون نام
+                            {% endif %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %} text-right"
+                               href="{% url 'users:profile' %}">پروفایل</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'user_cart' %}active{% endif %} text-right" href="{% url 'orders:user_cart' %}">سبد خرید</a>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'orders_list' %}active{% endif %} text-right" href="{% url 'orders:orders_list' %}">سفارشات</a>
+                            <a class="dropdown-item text-right" href="{% url 'account_logout' %}">خروج</a>
+                        </div>
+                    </li>
+                {% endif %}
+            {% else %}
+                <li class="nav-item {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}">
+                    <a class="nav-link text-right" href="{% url 'account_login' %}">ورود کاربر</a>
+                </li>
+            {% endif %}
+            {% block extra_nav_item %}
+            {% endblock %}
+        </ul>
+    </div>
+</nav>
+{% block body %}
+
+{% if messages %}
+<div class="messages">
+    <ul>
+        {% for message in messages %}
+        <li style="direction: rtl;">{{message}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}
+{% block extra_body %}
+{% endblock %}
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+{% block extra_script %}
+{% endblock %}
+</body>
+</html>

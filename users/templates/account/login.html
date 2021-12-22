@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}ثبت نام{% endblock %}
+{% block description %}
+انتشارات اقیانوس دانش - ورود کاربران - در صورتی که حساب کاربری ندارید می توانید به راحتی برای یک حساب کاربری جدید ثبت نام انجام دهید تا بتوانید از امکانات بیشتر سایت مانند نظر دادن به کتاب ها و ثبت سفارشات استفاده کنید
+{% endblock %}
+{% load i18n static %}
+{% block content %}
+<div class="container rtl-div col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center p-5">
+    <h1>ورود کاربر</h1>
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="btn btn-success primaryAction mb-3" type="submit">ورود</button><br>
+      <a class="btn btn-warning button secondaryAction mb-3" href="{% url 'account_reset_password' %}">فراموشی رمز عبور</a>
+      <p>در صورتی که حساب کاربری ندارید نسبت به ساخت حساب کاربری جدید اقدام فرمایید<br><a class="btn btn-primary" href="{{ signup_url }}">ساخت حساب کاربری</a></p>
+    </form>
+</div>
+
+
+{% endblock %}
+
+
+

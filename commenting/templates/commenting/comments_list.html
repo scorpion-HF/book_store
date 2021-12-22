@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load comments %}
+{% load comments_xtd %}
+{% block title %} نظرات کتاب {{book.title}} {% endblock %}
+{% block description %}
+انتشارات اقیانوس دانش - نظرات کاربران درباره کتاب {{book.title}}
+{% endblock %}
+{% block content %}
+<div class="container-fluid" id="comments">
+    <div class="pb-3">
+  <h1 class="page-header text-center">{{ book.title }}</h1>
+  <p class="small text-center">نظرات</p>
+</div>
+<div>
+  {{ book.body|linebreaks }}
+</div>
+{% get_comment_count for book as comment_count %}
+<div class="py-4 text-center">
+  <a href="{% url 'catalog:book_detail' book.id %}">بازگشت به جزئیات کتاب</a>
+  <br>
+  &nbsp;&sdot;&nbsp;
+  تعداد {{ comment_count }} نظر دریافت شده است
+  <br>
+</div>
+
+{% if book.allow_comments %}
+<div class="comment">
+  <h4 class="text-center">نظر شما</h4>
+  <div class="well text-center">
+    {% render_comment_form for book %}
+  </div>
+</div>
+{% endif %}
+
+{% if comment_count %}
+<ul class="media-list">
+  {% render_xtdcomment_tree for book %}
+</ul>
+{% endif %}
+</div>
+{% endblock %}

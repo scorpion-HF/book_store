@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+{% load comments %}
+{% load comments_xtd %}
+{% load jalali_tags %}
+{% load IR %}
+{% block title %} کتاب {{book.title}}{% endblock %}
+{% block description %}
+انتشارات اقیانوس دانش - مشخصات کتاب {{book.title}} - {{book.description}}
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container rtl-div">
+    <div class="row">
+        <div class="col-xs-12 col-md-3 text-right mt-5">
+            {% if book.image %}
+            <img src="{{ book.image.url }}" class="img-responsive img-fluid img-thumbnail"
+                 alt="book image">
+            {% else %}
+            <img src="{% static 'catalog/book_default.png' %}" class="img-responsive img-fluid img-thumbnail"
+                 alt="book image">
+            {% endif %}
+            <div class="col-xs-12 col-md-7 rtl-div mt-5 text-center">
+        </div>
+        </div>
+        <div class="col-xs-12 col-md-7 rtl-div mt-5 text-center">
+            <h1 style="font-size: 24px;">مشخصات کتاب<br>{{book.title}} </h1>
+            <p>{{book.description}}</p>
+        </div>
+    </div>
+    <div class="row text-center m-5">
+        <div class="table-responsive">
+            <table class="table table-sm table-borderless mb-0 text-right">
+                <tbody>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>موضوع:</strong></th>
+                    <td>
+                        {% if book.electronicbook %}
+                        {% for category in book.electronicbook.categories.all %}
+                        ({{ category }})
+                        &nbsp;
+                        {% endfor %}
+                        {% else %}
+                        {% for category in book.printedbook.categories.all %}
+                        ({{ category }})
+                        &nbsp;
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>نویسنده:</strong></th>
+                    <td>
+                        {% if book.electronicbook %}
+                        {% for author in book.electronicbook.authors.all %}
+                        ({{ author.get_full_name }})
+                        &nbsp;
+                        {% endfor %}
+                        {% else %}
+                        {% for author in book.printedbook.authors.all %}
+                        ({{ author.get_full_name }})
+                        &nbsp;
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>سال چاپ:</strong></th>
+                    <td>
+                        {% with date_of_publish=book.date_of_publish|to_jalali:'%y/%m/%d' %}
+                        {{ date_of_publish|persian_date }}
+                        {% endwith %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>نوع چاپ:</strong></th>
+                    <td>
+                        {% if book.printedbook %}
+                        چاپی
+                        {% else %}
+                        الکترونیکی
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if book.file %}
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>فایل:</strong></th>
+                    <td>
+                        <a href="{{ book.summery_file.url }}" target="_blank"> مشاهده فایل خلاصه کتاب</a>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>قیمت:</strong></th>
+                    <td>{{ book.price|price }}ریال</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <div class="conainer text-center">
+        <a href="{% url 'commenting:comments_list' book.id %}"
+           class="btn btn-primary mb-3">نظرات</a>
+        {% if not request.user.is_superuser %}
+            <form method="post" action="{% url 'orders:add_to_cart' book.id %}">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">اضافه به سبد خرید<i class="fas fa-shopping-cart"></i>
+                </button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

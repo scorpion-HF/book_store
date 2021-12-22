@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}تایید ایمیل{% endblock %}
+{% block content %}
+<div class="container rtl-div col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center p-5">
+    <h1>آدرس ایمیل خود را تایید کنید</h1>
+
+    {% url 'account_email' as email_url %}
+
+    <p>این بخش نیاز به تایید آدرس ایمیل شما دارد</p>
+
+    <p>ایمیل تایید آدرس ایمیل به شما ارسال شد از لینک موجود در آن جهت تایید ایمیل آدرس استفاده نمایید در صورتی که ایمیلی
+        دریافت نکردید با ما تماس حاصل نمایید </p>
+
+    <p>{% blocktrans %}<strong>توجه</strong> شما هنوز می توانید آدرس ایمیل خود را تغییر دهید<br> <a
+            href="{{ email_url }}">تغییر آدرس ایمیل</a></p>
+</div>
+
+{% endblock %}

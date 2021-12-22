@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load comments %}
+{% load comments_xtd %}
+{% load jalali_tags %}
+{% load IR %}
+{% block title %}مطالعه کتاب الکترونیکی {{electronic_book.title}}{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid rtl-div m-1">
+    <embed src="{{ electronic_book.book_file.url }}" width="100%" height="90%" type="application/pdf">
+</div>
+
+
+{% endblock %}

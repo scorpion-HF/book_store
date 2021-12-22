@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% block description %}
+انتشارات اقیانوس دانش - ناشر کتاب های چاپی و الکترونیکی - مشاوره تألیف و چاپ کتاب - فروش اینترنتی انواع کتاب ها در موضوعات مختلف - ارسال کتاب به سراسر کشور
+{% endblock %}
+{% block content %}
+<div class="container-fluid rtl-div">
+    <div class="row">
+        <img class="img-fluid w-100 mb-4" src="{% static 'oghyanus danesh.jpg' %}" alt="banner">
+    </div>
+    <div class="row rtl-div">
+        <div class="card col-lg rtl-div text-center m-1" style="background-color:#9932CC">
+            <div class="card-body">
+                <h5 class="card-title">تنوع محصولات</h5>
+                <h6 class="card-subtitle mb-2 text-black">کتاب ها با موضوعات متنوع</h6>
+                <p class="card-text">دانشگاهی - علمی - داستان - مذهبی و...</p>
+                <p class="card-text">از محصولات متنوع ما دیدن فرمایید</p>
+                <a href="{% url 'catalog:books_list' %}" class="card-link btn btn-primary">مشاهده محصولات</a>
+            </div>
+        </div>
+        <div class="card col-lg rtl-div text-center m-1" style="background-color:#7FFF00">
+            <div class="card-body">
+                <h5 class="card-title">حساب کاربری</h5>
+                <h6 class="card-subtitle mb-2 text-black">عضویت با ساخت حساب کاربری</h6>
+                <p class="card-text">جهت ثبت سفارش و استفاده از امکانات بیشتر نسبت به ساخت حساب کاربری اقدام نمایید</p>
+                <a href="{% url 'account_signup' %}" class="card-link btn btn-primary">ثبت نام</a>
+                <a href="{% url 'account_login' %}" class="card-link btn btn-primary">ورود به حساب</a>
+            </div>
+        </div>
+        <div class="card col-lg rtl-div text-center m-1 " style="background-color:#FFD700">
+            <div class="card-body">
+                <h5 class="card-title">آشنایی بیشتر</h5>
+                <h6 class="card-subtitle mb-2 text-black">آشنایی با انتشارات اقیانوس دانش و راه های ارتباطی</h6>
+                <p class="card-text">با انتشارات اقیانوس دانش بیشتر آشنا شوید و از طریق راه های ارتباطی با ما در تماس
+                    باشید</p>
+                <a href="{% url 'about' %}" class="card-link btn btn-primary">درباره ما</a>
+                <a href="{% url 'contact' %}" class="card-link btn btn-primary">تماس با ما</a>
+            </div>
+        </div>
+    </div>
+    <div class="row m-5 justify-content-center">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="row">
+                <div class="container col-xs-12 text-center">
+                    <img class="card-img-top rounded-circle w-50 m-2" src="{% static 'olom.jpg' %}"
+                         alt="لوگوی وزارت علوم تحقیقات و فناوری">
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <h6 class="card-title">وزارت علوم تحقیقات و فناوری</h6>
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <small class="text-muted"><a href="https://www.msrt.ir/fa" target="_blank">مشاهده</a></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="row">
+                <div class="container col-xs-12 text-center">
+                    <img class="card-img-top rounded-circle w-50 m-2" src="{% static 'ershad.png' %}"
+                         alt="لوگوی وزارت فرهنگ و ارشاد اسلامی">
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <h6 class="card-title">وزارت فرهنگ و ارشاد اسلامی</h6>
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <small class="text-muted"><a href="https://www.farhang.gov.ir" target="_blank">مشاهده</a></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="row">
+                <div class="container col-xs-12 text-center">
+                    <img class="card-img-top rounded-circle w-50 m-2" src="{% static 'asnad.jpeg' %}"
+                         alt="لوگوی سازمان اسناد و کتابخانه ملی">
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <h6 class="card-title">سازمان اسناد و کتابخانه ملی</h6>
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <small class="text-muted"><a href="https://www.nlai.ir/" target="_blank">مشاهده</a></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="row">
+                <div class="container col-xs-12 text-center">
+                    <img class="card-img-top rounded-circle w-50 m-2" src="{% static 'azad.jpg' %}"
+                         alt="لوگوی دانشگاه آزاد">
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <h6 class="card-title">دانشگاه آزاد اسلامی</h6>
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <small class="text-muted"><a href="http://edu.iau.ac.ir/" target="_blank">مشاهده</a></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="row">
+                <div class="container col-xs-12 text-center">
+                    <img class="card-img-top rounded-circle w-50 m-2" src="{% static 'tehran-uni.jpg' %}"
+                         alt="لوگوی دانشگاه تهران">
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <h6 class="card-title">دانشگاه تهران</h6>
+                </div>
+                <div class="container col-xs-12 text-center">
+                    <small class="text-muted"><a href="https://ut.ac.ir/fa" target="_blank">مشاهده</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

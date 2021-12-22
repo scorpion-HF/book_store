@@ -1,0 +1,138 @@
+/* font adding */
+@font-face {
+  font-family: Vazir;
+  src: url('./fonts/Vazir.eot');
+  src: url('./fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+       url('./fonts/Vazir.woff') format('woff'),
+       url('./fonts/Vazir.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('./fonts/Vazir-Bold.eot');
+  src: url('./fonts/Vazir-Bold.eot?#iefix') format('embedded-opentype'),
+       url('./fonts/Vazir-Bold.woff') format('woff'),
+       url('./fonts/Vazir-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('./fonts/Vazir-Light.eot');
+  src: url('./fonts/Vazir-Light.eot?#iefix') format('embedded-opentype'),
+       url('./fonts/Vazir-Light.woff') format('woff'),
+       url('./fonts/Vazir-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+/* basic styles */
+.invalid-feedback {
+  display: block !important;
+}
+
+.alert-danger ul {
+  list-style: none !important;
+}
+
+.asteriskField {
+  display: none !important;
+}
+
+* {
+  font-family: "Vazir", Arial, sans-serif;
+}
+
+input, textarea, select { font-family:inherit; }
+
+h1, h2, h3, h4, h5, h6, p, a, .rtl-div {
+    direction: rtl;
+}
+
+body {
+    background-color: #AFEEEE;
+}
+
+#ads {
+    margin: 30px 0 30px 0;
+}
+
+.card-notify-badge {
+        position: absolute;
+        left: -10px;
+        top: -20px;
+        background: #ff4444;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+
+    }
+
+.card-notify-year {
+        position: absolute;
+        right: -10px;
+        top: -20px;
+        background: #ff4444;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        width: 50px;
+        height: 50px;
+        padding: 15px 0 0 0;
+}
+
+
+.card-detail-badge {
+        background: #87CEEB;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+
+
+.card:hover {
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+.card-image-overlay {
+        font-size: 20px;
+
+    }
+
+
+.card-image-overlay span {
+            display: inline-block;
+        }
+
+
+.ad-title h5 {
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+/* login and forms */
+
+.messages {
+  text-align: center;
+}
+
+.messages * {
+  color: green;
+  direction: ltr;
+  list-style-type: none;
+}
+
+#id_remember {
+  margin-right: -20px;
+}
+
+

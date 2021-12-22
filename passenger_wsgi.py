@@ -1,0 +1,1 @@
+from book_store.wsgi import application

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}ثبت نام{% endblock %}
+{% block description %}
+انتشارات اقیانوس دانش - ثبت نام کاربران - با ثبت نام در سایت می توانید از امکانات بیشتر سایت مانند نظر دادن به کتاب ها و ثبت سفارشات استفاده کنید
+{% endblock %}}
+{% block content %}
+<div class="container rtl-div col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center p-5">
+    <h1> ثبت نام </h1>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button class="btn btn-success" type="submit"> ثبت نام</button>
+    </form>
+    <p> در صورتی که قبلا ثبت نام کرده اید از طریق لینک زیر اقدام به ورود نمایید<br> <a class="btn btn-info"
+                                                                                       href="{{ login_url }}">ورود
+        کاربر</a></p>
+</div>
+{% endblock %}
